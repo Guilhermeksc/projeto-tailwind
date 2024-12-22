@@ -1,0 +1,82 @@
+<aside class="sidebar">
+  <!-- Mini-logo -->
+  <div class="header-container">
+    <div class="mini-logo">
+      <img src="/assets/img/mini-logo.svg" alt="Mini Logo" />
+    </div>
+  
+    <div class="uasg-header">
+      <span class="uasg-label">UASG:</span>
+      <span class="uasg-value">{{ uasg }}</span>
+    </div>
+  </div>
+  <ul>
+    <!-- Conteúdo existente -->
+    <li (click)="toggleSection('dashboard')">
+      <span>DASHBOARD</span>
+      <span class="toggle-icon">{{ collapsedSections.dashboard ? '-' : '+' }}</span>
+    </li>
+      <ul *ngIf="collapsedSections.dashboard" class="sub-menu-navigate">
+        <li (click)="navigateTo('calendar')" [class.active]="activeSection === 'calendar'">
+          <i class="fa fa-calendar-alt"></i> Calendário
+        </li>  
+        <li (click)="navigateTo('dash')" [class.active]="activeSection === 'dash'">
+          <i class="fa fa-dashboard"></i> Dashboard
+        </li>      
+        <li (click)="navigateTo('chat')" [class.active]="activeSection === 'chat'">
+          <i class="fa fa-message"></i> Chat
+        </li>        
+        <li (click)="navigateTo('scrum-view')" [class.active]="activeSection === 'scrum-view'">
+          <i class="fa fa-route"></i> Fluxo de Trabalho
+        </li>
+        <li (click)="navigateTo('pgc')" [class.active]="activeSection === 'pgc'">
+          <i class="fa fa-tasks"></i> PGC
+        </li>
+        <li (click)="navigateTo('analise')" [class.active]="activeSection === 'analise'">
+          <i class="fa fa-chart-line"></i> Análises
+        </li>
+        <li (click)="navigateTo('apresentacao')" [class.active]="activeSection === 'apresentacao'">
+          <i class="fa fa-chalkboard"></i> Apresentação
+        </li>
+      </ul>
+        <li (click)="toggleSection('modulos')">
+          <span>MÓDULOS</span>
+          <span class="toggle-icon">{{ collapsedSections.modulos ? '-' : '+' }}</span>
+        </li>
+        <ul *ngIf="collapsedSections.modulos" class="sub-menu">
+          <li (click)="navigateTo('prazos')" [class.active]="activeSection === 'prazos'">
+            <i class="fa fa-calendar-alt"></i> Controle de Prazos
+          </li>
+          <li (click)="navigateTo('planejamento')" [class.active]="activeSection === 'planejamento'">
+            <i class="fa fa-tasks"></i> Planejamento
+          </li>
+          <li><i class="fa fa-folder-open"></i> PGC</li>
+          <li><i class="fa fa-gavel"></i> Licitação</li>
+          <li><i class="fa fa-file-alt"></i> Dispensa Eletrônica</li>
+          <li><i class="fa fa-file"></i> Gerar Atas</li>
+        </ul>
+    
+        <li (click)="toggleSection('documentos')">
+          <span>DOCUMETOS</span>
+          <span class="toggle-icon">{{ collapsedSections.documentos ? '-' : '+' }}</span>
+        </li>
+        <ul *ngIf="collapsedSections.documentos" class="sub-menu">
+          <li><i class="fa fa-folder"></i> Abertura de Processo</li>
+          <li><i class="fa fa-users"></i> Portaria de Fiscalização</li>
+          <li><i class="fa fa-edit"></i> Edital</li>
+          <li><i class="fa fa-bullhorn"></i> Aviso de Dispensa</li>
+        </ul>
+    
+        <li (click)="toggleSection('configuracoes')">
+          <span>CONFIGURAÇÕES</span>
+          <span class="toggle-icon">{{ collapsedSections.configuracoes ? '-' : '+' }}</span>
+        </li>
+        <ul *ngIf="collapsedSections.configuracoes" class="sub-menu">
+          <li><i class="fa fa-sitemap"></i> Organizações</li>
+          <li><i class="fa fa-user-shield"></i> Agentes Responsáveis</li>
+          <li><i class="fa fa-database"></i> Banco de Dados</li>
+        </ul>
+      </ul>
+    </aside>
+    
+  

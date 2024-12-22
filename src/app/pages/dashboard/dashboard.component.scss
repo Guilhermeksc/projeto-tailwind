@@ -1,0 +1,28 @@
+.dashboard-container {
+    display: flex; /* Flexbox para alinhamento horizontal */
+    flex-direction: row; 
+    height: 100vh; /* Altura total da tela */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .left-container {
+    display: flex; /* Flexbox para alinhar mini-sidebar e sidebar juntos */
+    align-items: stretch; /* Estica os elementos horizontalmente */
+    margin: 0; /* Remove margens extras */
+    padding: 0; /* Remove qualquer espaçamento */
+    gap: 0; /* Garante que não haja espaço entre os elementos */
+  }
+  
+  app-minisidebar, app-sidebar {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove padding */
+    line-height: 0; /* Remove espaço vertical relacionado a altura de linha */
+    flex: 0 0 auto; /* Garante que não haja redimensionamento ou espaço extra */
+  }
+  
+  app-content {
+    flex: 1; /* Preenche o espaço restante */
+    background-color: #f8f9fa; /* Cor de fundo para visualização */
+  }
+  

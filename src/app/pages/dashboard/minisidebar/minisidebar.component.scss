@@ -1,0 +1,66 @@
+.mini-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh; // Altura total da tela
+    background-color: #19191E; // Fundo preto
+    width: 50px; // Largura fixa
+    align-items: center;
+    padding: 1rem 0;
+    color: var(--bs-white); // Cor do texto branca
+    box-shadow: var(--bs-box-shadow);
+  
+    .top-section,
+    .bottom-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  
+      li {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+  
+        i {
+          font-size: 1.2rem;
+          color: var(--bs-white); // Ícones brancos
+          transition: color 0.3s ease;
+        }
+  
+        &:hover i {
+          color: var(--bs-primary); // Cor primária ao hover
+        }
+  
+        .tooltip {
+          position: absolute;
+          left: 60px; // Espaço para exibir fora da sidebar
+          background-color: var(--bs-dark); // Fundo do tooltip
+          color: var(--bs-white); // Cor do texto
+          padding: 0.5rem;
+          border-radius: var(--bs-border-radius-sm);
+          font-size: 0.8rem;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s, visibility 0.3s;
+  
+          // Exibir tooltip ao passar o mouse
+          li:hover & {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+  

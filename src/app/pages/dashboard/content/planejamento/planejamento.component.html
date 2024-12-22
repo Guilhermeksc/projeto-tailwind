@@ -1,0 +1,46 @@
+<div class="container-fluid mt-3">
+    <!-- Título e Seleção de Ano -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Planejamento de Licitações</h2>
+      <div>
+        Ano: 
+        <select class="form-select d-inline w-auto" [(ngModel)]="selectedYear">
+          <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Barra de Busca e Botões -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <input
+        type="text"
+        class="form-control me-2"
+        placeholder="Buscar..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+      />
+      <div>
+        <button class="btn btn-primary me-2" (click)="addItem()">Adicionar</button>
+        <button class="btn btn-danger me-2" (click)="deleteItem()">Excluir</button>
+        <button class="btn btn-success me-2" (click)="generateTable()">Gerar Tabela</button>
+        <button class="btn btn-secondary" (click)="controlItems()">Controle</button>
+      </div>
+    </div>
+  
+    <!-- Tabela -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of filteredTableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

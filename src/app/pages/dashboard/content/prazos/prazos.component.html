@@ -1,0 +1,40 @@
+<div class="controle-prazos">
+  <h1>Consulta de Contratos - ComprasNet</h1>
+
+  <!-- Formulário para consulta de UASG -->
+  <app-consulta-uasg 
+    (uasgConsultada)="onUasgConsultada()">
+  </app-consulta-uasg>
+
+  <!-- Dropdown para seleção de tabelas -->
+  <app-tabela-contratos
+  [tabelasDisponiveis]="tabelasDisponiveis"
+  (tabelaSelecionada)="onTabelaConfirmada($event)">
+</app-tabela-contratos>
+
+<!-- Tabela de Dados -->
+<div *ngIf="dadosFiltrados.length > 0" style="margin-top: 20px;">
+  <h2>Dados da Tabela Selecionada</h2>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let coluna of colunas">{{ coluna }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let linha of dadosFiltrados" (click)="onRowClick($event)">
+        <td *ngFor="let valor of linha">{{ valor }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+
+
+
+  <!-- Campo de busca e tabela -->
+  <app-filtro-tabela 
+    [dados]="dadosFiltrados" 
+    (filtroAplicado)="onFiltrarDados($event)">
+  </app-filtro-tabela>
+</div>

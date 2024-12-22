@@ -1,0 +1,11 @@
+<div>
+    <label for="tabelas">Selecione uma tabela:</label>
+    <select id="tabelas" [(ngModel)]="tabelaSelecionadaAtual">
+      <option value="">-- Selecione --</option>
+      <option *ngFor="let tabela of tabelasDisponiveis" [value]="tabela">
+        {{ tabela }}
+      </option>
+    </select>
+  </div>
+  <button (click)="confirmarSelecao()">Confirmar</button>
+  

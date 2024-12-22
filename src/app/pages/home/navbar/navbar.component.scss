@@ -1,0 +1,20 @@
+nav {
+  &.nav-background {
+    background: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+
+  &.nav-transparent {
+    background: transparent; /* Fundo transparente */
+    box-shadow: none; /* Remove sombra */
+  }
+
+  /* Transição suave entre estados */
+  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+
+.nav-item a {
+  cursor: pointer; /* Faz o cursor virar mãozinha */
+}
+

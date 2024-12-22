@@ -1,0 +1,15 @@
+button {
+    display: block; /* Garante que o botão apareça como bloco */
+    margin-top: 10px; /* Adiciona espaço entre o botão e o campo de seleção */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
