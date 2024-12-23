@@ -1,16 +1,9 @@
 #backgroundVideo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; // Garante que o vídeo cubra toda a tela sem distorção
-    z-index: -1; // Coloca o vídeo atrás do conteúdo
-  }
-  
-  .main-content {
-    position: relative; // Certifica-se de que o conteúdo fica acima do vídeo
-    z-index: 1;
-    padding: 20px;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largura total da viewport */
+  height: 100vh; /* Altura total da viewport */
+  object-fit: cover; /* Ajusta o vídeo para cobrir sem distorção */
+  z-index: -1;
+}

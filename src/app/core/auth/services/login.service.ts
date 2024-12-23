@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
 export interface LoginResponse {
   token: string;
@@ -12,18 +13,19 @@ export interface LoginResponse {
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8000/api'; // URL do backend Django
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, { email, password }).pipe(
-        tap((response) => {
-            sessionStorage.setItem('auth-token', response.token);
-            sessionStorage.setItem('username', response.name);
-        })
+    return this.http.post<LoginResponse>(`${this.apiUrl}login/`, { email, password }).pipe(
+      tap((response) => {
+        sessionStorage.setItem('auth-token', response.token);
+        sessionStorage.setItem('username', response.name);
+      })
     );
-}
+  }
+
 
   logout(): void {
     sessionStorage.removeItem('auth-token');
@@ -36,7 +38,6 @@ export class LoginService {
       return new Observable<boolean>((observer) => observer.next(false));
     }
 
-    // Validar o token no backend Django
     return this.http.post<boolean>(`${this.apiUrl}/validate-token/`, { token });
   }
 

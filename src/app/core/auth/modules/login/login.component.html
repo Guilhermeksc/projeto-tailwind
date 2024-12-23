@@ -1,35 +1,9 @@
-<app-welcome></app-welcome>
-<div class="auth-form">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
-    <label for="email">E-mail</label>
-    <input
-      type="email"
-      id="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Seu e-mail"
-      required
-    />
-    
-    <label for="password">Senha</label>
-    <input
-      type="password"
-      id="password"
-      [(ngModel)]="password"
-      name="password"
-      placeholder="Sua senha"
-      required
-    />
-    
-    <button type="submit">Entrar</button>
-  </form>
-  <p class="auth-invite">
-    Não tem uma conta? 
-    <a (click)="navigateToRegister($event)">Registre-se</a>
-  </p>
-  <p class="auth-invite">
-    Esqueceu a senha?
-    <a (click)="navigateToPasswordReset($event)">Recupere aqui</a>
-  </p>
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Aguarde, estamos processando seu login...</p>
 </div>
+
+<app-auth-form 
+  [type]="'login'"
+  (formSubmit)="handleLogin($event)">
+</app-auth-form>

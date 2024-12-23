@@ -1,42 +1,29 @@
 import { Component } from '@angular/core';
-import { PasswordResetService } from '../../services/password-reset.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { AuthFormComponent } from '../auth-form/auth-form.component'; // Caminho correto para o AuthFormComponent
 import { Router } from '@angular/router';
-import { WelcomeComponent } from '../welcome/welcome.component';
+
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss'],
-  imports: [FormsModule, WelcomeComponent, CommonModule],
+  standalone: true,
+  imports: [AuthFormComponent],
 })
 export class PasswordResetComponent {
-  email: string = '';
-  message: string | null = null;
-  error: string | null = null;
+  constructor(private router: Router) {}
 
-  constructor(
-    private passwordResetService: PasswordResetService,
-    private router: Router
-  ) {}
-
-  onSubmit() {
-    this.passwordResetService.sendResetLink(this.email).subscribe(
-      (response) => {
-        this.message = 'Um link de redefinição de senha foi enviado para o seu e-mail.';
-      },
-      (error) => {
-        if (error.status === 404) {
-          this.error = 'Usuário com este e-mail não encontrado.';
-        } else if (error.status === 400) {
-          this.error = 'E-mail é obrigatório.';
-        } else {
-          this.error = 'Erro ao processar sua solicitação. Tente novamente mais tarde.';
-        }
-      }
-    );
+  onFormSubmit(data: { email: string; password?: string; confirmPassword?: string }) {
+    const password = data.password || ''; // Define um valor padrão
+    const confirmPassword = data.confirmPassword || '';
+  
+    if (password !== confirmPassword) {
+      alert('As senhas não coincidem!');
+      return;
+    }
+  
+    // Lógica de redefinição de senha
+    console.log('Senha redefinida para:', data.email);
+    this.router.navigate(['/login']);
   }
-  navigateToLogin() {
-    this.router.navigate(['/inicio']); // Redireciona para a página de registro
-  }
+  
 }

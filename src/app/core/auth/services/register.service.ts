@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8000/api/register/';
-  private validateEmailUrl = 'http://localhost:8000/api/validate-email/';
+  private apiUrl = environment.apiUrl;
+  private validateEmailUrl = environment.validateEmailUrl;
 
   constructor(private http: HttpClient) {}
 
+  // Registra o usuário
   register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.apiUrl, { name, email, password });
+    return this.http.post(`${this.apiUrl}register/`, { name, email, password });
   }
 
+  // Valida o e-mail com o token recebido
   validateEmail(token: string): Observable<any> {
     return this.http.get(`${this.validateEmailUrl}${token}/`);
   }

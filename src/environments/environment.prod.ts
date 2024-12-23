@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://licitacao360.com/consulta_api/',
-  uasg: null,
+  apiUrl: 'https://licitacao360.com/api/',
+  validateEmailUrl: 'https://licitacao360.com/api/validate-email/',
 };

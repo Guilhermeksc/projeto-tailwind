@@ -1,54 +1,55 @@
-import { Component, Inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterService } from '../../services/register.service';
-import { Router } from '@angular/router';
-import { WelcomeComponent } from '../welcome/welcome.component';
+import { AuthFormComponent } from '../auth-form/auth-form.component'; // Importe o AuthFormComponent
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [FormsModule, WelcomeComponent, HttpClientModule],
+  imports: [AuthFormComponent, CommonModule], // Adicione o AuthFormComponent aqui
 })
 export class RegisterComponent {
-  name: string = '';
-  email: string = '';
-  password: string = '';
+  isLoading: boolean = false;
 
-  constructor(@Inject(RegisterService) 
-  private registerService: RegisterService, 
-  private toastr: ToastrService, 
-  private router: Router
-) {}
+  constructor(
+    private registerService: RegisterService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
-  onSubmit() {
-    if (!this.name || !this.email || !this.password) {
+  onFormSubmit(event: { name?: string; email: string; password?: string; confirmPassword?: string }) {
+    const { name, email, password, confirmPassword } = event;
+
+    if (!name || !email || !password || !confirmPassword) {
       this.toastr.warning('Preencha todos os campos!', 'Atenção');
       return;
     }
 
-    this.registerService.register(this.name, this.email, this.password).subscribe(
-      (response) => {
-        this.toastr.success('Registro realizado com sucesso!', 'Sucesso');
-        console.log('Resposta do servidor:', response);
-      },
-      (error: HttpErrorResponse) => {
-        let errorMsg = 'Ocorreu um erro ao tentar registrar o usuário.';
-        if (error.status === 400) {
-          errorMsg = error.error?.detail || 'Já existe um usuário com essas credenciais.';
-        } else if (error.status >= 500) {
-          errorMsg = 'Erro no servidor. Tente novamente mais tarde.';
-        }
-        console.error('Erro no registro:', error);
-        this.toastr.error(errorMsg, 'Erro');
-      }
-    );
-  }
+    if (password !== confirmPassword) {
+      this.toastr.warning('As senhas não coincidem!', 'Atenção');
+      return;
+    }
 
-  navigateToLogin() {
-    this.router.navigate(['/inicio']); // Redireciona para a página de registro
+    this.isLoading = true;
+
+    this.registerService.register(name, email, password).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.toastr.success(
+          'Cadastro realizado com sucesso! Por favor, valide seu e-mail.',
+          'Sucesso'
+        );
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        const errorMsg = err.error?.message || 'Erro ao realizar cadastro.';
+        this.toastr.error(errorMsg, 'Erro');
+      },
+    });
   }
 }

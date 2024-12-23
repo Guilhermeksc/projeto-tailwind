@@ -1,40 +1,9 @@
-<app-welcome></app-welcome>
-<div class="auth-form">
-  <h2>Registre-se</h2>
-  <form (ngSubmit)="onSubmit()">
-    <label for="name">Nome</label>
-    <input
-      type="text"
-      id="name"
-      [(ngModel)]="name"
-      name="name"
-      placeholder="Seu nome"
-      required
-    />
-
-    <label for="email">E-mail</label>
-    <input
-      type="email"
-      id="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Seu e-mail"
-      required
-    />
-
-    <label for="password">Senha</label>
-    <input
-      type="password"
-      id="password"
-      [(ngModel)]="password"
-      name="password"
-      placeholder="Sua senha"
-      required
-    />
-
-    <button type="submit">Registrar</button>
-  </form>
-  <p class="auth-invite">
-    Já tem uma conta? <a (click)="navigateToLogin()">Faça login</a>
-  </p>
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Aguarde, estamos processando seu registro...</p>
 </div>
+
+<app-auth-form
+  [type]="'register'"
+  (formSubmit)="onFormSubmit($event)">
+</app-auth-form>

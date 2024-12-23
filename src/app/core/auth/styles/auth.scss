@@ -1,18 +1,38 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Garante que ocupe toda a altura da tela */
+  overflow: hidden; /* Remove barras de rolagem */
+}
+
 .auth-form {
-    /* Estilos básicos */    position: relative;
-    background-color: rgba(8, 21, 58, 0.1); /* Fundo azul navy com 50% de opacidade */
-    backdrop-filter: blur(15px);
-    border-radius: 15px;
-    padding: 25px;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5), /* Brilho azul */
-                0 0 5px rgba(255, 255, 255, 0.9); /* Efeito radiante mais suave */
-    opacity: 0; /* Inicialmente invisível */
-    transform: translateY(20px); /* Levemente abaixo */
-    animation: fadeIn 0.8s ease-out forwards; /* Animação ao carregar */
-    border: 2px solid transparent; /* Evita bordas sobrepostas ao efeito */
-  
+  position: relative;
+  background-color: rgba(8, 21, 58, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5),
+              0 0 5px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+  border: 2px solid transparent;
+}
+
+@media (min-width: 1024px) {
+  .auth-form {
+      bottom: 0px; /* Empurra mais em telas médias */
+  }
+}
+
+@media (min-width: 1440px) {
+  .auth-form {
+      margin-bottom: 120px; /* Empurra mais em telas grandes */
+  }
+}
+
     h2 {
       text-align: center;
       color: #fff; /* Texto branco */
@@ -97,7 +117,7 @@
         }
       }
     }
-  }
+  
   
   /* Animação de fade-in ao carregar */
   @keyframes fadeIn {
@@ -114,3 +134,17 @@
   .auth-invite a {
     cursor: pointer;
   }
+
+  .validation-message {
+    display: flex;
+    align-items: center;
+    color: green;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  
+    i {
+      margin-right: 8px;
+    }
+  }
+
+  
