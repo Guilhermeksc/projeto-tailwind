@@ -4,13 +4,14 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
+import { WelcomeComponent } from '../welcome/welcome.component';
 
 @Component({
   standalone: true,
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, WelcomeComponent, HttpClientModule],
 })
 export class RegisterComponent {
   name: string = '';

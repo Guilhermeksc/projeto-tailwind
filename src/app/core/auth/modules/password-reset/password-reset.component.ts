@@ -2,18 +2,23 @@ import { Component } from '@angular/core';
 import { PasswordResetService } from '../../services/password-reset.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { WelcomeComponent } from '../welcome/welcome.component';
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss'],
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, WelcomeComponent, CommonModule],
 })
 export class PasswordResetComponent {
   email: string = '';
   message: string | null = null;
   error: string | null = null;
 
-  constructor(private passwordResetService: PasswordResetService) {}
+  constructor(
+    private passwordResetService: PasswordResetService,
+    private router: Router
+  ) {}
 
   onSubmit() {
     this.passwordResetService.sendResetLink(this.email).subscribe(
@@ -30,5 +35,8 @@ export class PasswordResetComponent {
         }
       }
     );
+  }
+  navigateToLogin() {
+    this.router.navigate(['/inicio']); // Redireciona para a página de registro
   }
 }

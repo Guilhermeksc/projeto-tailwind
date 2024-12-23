@@ -7,6 +7,7 @@ import { AuthGuard } from './core/auth/guard/auth-guard.service';
 import { ValidateEmailComponent } from './core/auth/modules/validate-email/validate-email.component';
 import { RegisterComponent } from './core/auth/modules/register/register.component';
 import { PasswordResetComponent } from './core/auth/modules/password-reset/password-reset.component';	
+import { ResetPasswordComponent } from './core/auth/modules/reset-password/reset-password.component';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'contatos', component: ContatosComponent },
       { path: 'validate-email/:token', component: ValidateEmailComponent },
       { path: 'password-reset', component: PasswordResetComponent },
+      { path: 'reset-password/:token', component: ResetPasswordComponent },
     ],
   },
   {

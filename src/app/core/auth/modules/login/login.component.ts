@@ -4,13 +4,13 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-
+import { WelcomeComponent } from '../welcome/welcome.component';
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, WelcomeComponent, HttpClientModule],
 })
 export class LoginComponent {
   email: string = '';

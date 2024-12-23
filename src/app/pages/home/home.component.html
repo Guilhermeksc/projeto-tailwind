@@ -1,6 +1,5 @@
 <video id="backgroundVideo" muted autoplay loop playsinline>
   <source src="/assets/video/header.mp4" type="video/mp4" />
-  <button onclick="document.querySelector('#backgroundVideo').play()">Clique para reproduzir</button>
 </video>
 
 <app-navbar
@@ -8,6 +7,9 @@
   (sobreClick)="onSobreClick()"
   (contatosClick)="onContatosClick()"
 ></app-navbar>
+
 <div class="main-content">
   <router-outlet></router-outlet>
 </div>
+
+<app-flying-robot></app-flying-robot>
