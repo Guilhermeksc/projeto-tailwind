@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { InicioComponent } from './pages/home/inicio/inicio.component';
 import { Licitacao360Component } from './pages/home/licitacao360/licitacao360.component';
 import { ContatosComponent } from './pages/home/contatos/contatos.component';
-import { AuthGuard } from './core/services/auth-guard.service';
-
-import { RegisterComponent } from './pages/home/register/register.component';
-
+import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './core/auth/guard/auth-guard.service';
+import { ValidateEmailComponent } from './core/auth/modules/validate-email/validate-email.component';
+import { RegisterComponent } from './core/auth/modules/register/register.component';
+import { PasswordResetComponent } from './core/auth/modules/password-reset/password-reset.component';	
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
@@ -17,16 +18,27 @@ import { AnaliseComponent } from './pages/dashboard/content/analise/analise.comp
 import { ApresentacaoComponent } from './pages/dashboard/content/apresentacao/apresentacao.component';
 import { PrazosComponent } from './pages/dashboard/content/prazos/prazos.component';
 import { PlanejamentoComponent } from './pages/dashboard/content/planejamento/planejamento.component';
+import { LoginComponent } from './core/auth/modules/login/login.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'licitacao360', component: Licitacao360Component },
-    { path: 'contatos', component: ContatosComponent },
-  { path: 'register', component: RegisterComponent },
   {
-    path: '360',
+    path: '',
+    component: HomeComponent,
+    children: [
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: 'inicio', component: InicioComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'sobreProjeto', component: Licitacao360Component },
+      { path: 'contatos', component: ContatosComponent },
+      { path: 'validate-email/:token', component: ValidateEmailComponent },
+      { path: 'password-reset', component: PasswordResetComponent },
+    ],
+  },
+  {
+    path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard], // Protege a rota do Dashboard
+    canActivate: [AuthGuard], // Protege a rota principal do dashboard
+    canActivateChild: [AuthGuard], // Protege as rotas filhas do dashboard
     children: [
       { path: 'calendar', component: CalendarComponent },
       { path: 'dash', component: DashComponent },
@@ -39,5 +51,5 @@ export const routes: Routes = [
       { path: 'planejamento', component: PlanejamentoComponent },
     ],
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'dashboard' },
 ];

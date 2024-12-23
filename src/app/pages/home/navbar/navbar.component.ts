@@ -1,4 +1,5 @@
-import { Component, HostListener, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,47 +11,22 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   isMenuOpen: boolean = false;
-  isHidden: boolean = false;
-  isScrollingUp: boolean = false;
 
-  private lastScrollTop: number = 0;
-
-  @Output() inicioClick = new EventEmitter<void>();
-  @Output() sobreClick = new EventEmitter<void>();
-  @Output() contatosClick = new EventEmitter<void>();
+  constructor(private router: Router) {}
 
   navigateToInicio() {
-    this.inicioClick.emit();
+    this.router.navigate(['/inicio']);
   }
 
   navigateToSobreProjeto() {
-    this.sobreClick.emit();
+    this.router.navigate(['/sobreProjeto']);
   }
 
   navigateToContatos() {
-    this.contatosClick.emit();
+    this.router.navigate(['/contatos']);
   }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  closeMenu(): void {
-    this.isMenuOpen = false;
-  }
-
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScrollTop > this.lastScrollTop) {
-      this.isHidden = true;
-      this.isScrollingUp = false;
-    } else {
-      this.isHidden = false;
-      this.isScrollingUp = true;
-    }
-
-    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   }
 }

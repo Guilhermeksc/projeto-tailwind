@@ -7,7 +7,7 @@
   
     <div class="uasg-header">
       <span class="uasg-label">UASG:</span>
-      <span class="uasg-value">{{ uasg }}</span>
+
     </div>
   </div>
   <ul>
@@ -17,25 +17,25 @@
       <span class="toggle-icon">{{ collapsedSections.dashboard ? '-' : '+' }}</span>
     </li>
       <ul *ngIf="collapsedSections.dashboard" class="sub-menu-navigate">
-        <li (click)="navigateTo('calendar')" [class.active]="activeSection === 'calendar'">
+        <li (click)="navigateTo('/dashboard/calendar')" [class.active]="activeSection === 'calendar'">
           <i class="fa fa-calendar-alt"></i> Calendário
         </li>  
-        <li (click)="navigateTo('dash')" [class.active]="activeSection === 'dash'">
+        <li (click)="navigateTo('/dashboard/dash')" [class.active]="activeSection === 'dash'">
           <i class="fa fa-dashboard"></i> Dashboard
         </li>      
-        <li (click)="navigateTo('chat')" [class.active]="activeSection === 'chat'">
+        <li (click)="navigateTo('/dashboard/chat')" [class.active]="activeSection === 'chat'">
           <i class="fa fa-message"></i> Chat
         </li>        
-        <li (click)="navigateTo('scrum-view')" [class.active]="activeSection === 'scrum-view'">
+        <li (click)="navigateTo('/dashboard/scrum-view')" [class.active]="activeSection === 'scrum-view'">
           <i class="fa fa-route"></i> Fluxo de Trabalho
         </li>
-        <li (click)="navigateTo('pgc')" [class.active]="activeSection === 'pgc'">
+        <li (click)="navigateTo('/dashboard/pgc')" [class.active]="activeSection === 'pgc'">
           <i class="fa fa-tasks"></i> PGC
         </li>
-        <li (click)="navigateTo('analise')" [class.active]="activeSection === 'analise'">
+        <li (click)="navigateTo('/dashboard/analise')" [class.active]="activeSection === 'analise'">
           <i class="fa fa-chart-line"></i> Análises
         </li>
-        <li (click)="navigateTo('apresentacao')" [class.active]="activeSection === 'apresentacao'">
+        <li (click)="navigateTo('/dashboard/apresentacao')" [class.active]="activeSection === 'apresentacao'">
           <i class="fa fa-chalkboard"></i> Apresentação
         </li>
       </ul>
@@ -44,10 +44,10 @@
           <span class="toggle-icon">{{ collapsedSections.modulos ? '-' : '+' }}</span>
         </li>
         <ul *ngIf="collapsedSections.modulos" class="sub-menu">
-          <li (click)="navigateTo('prazos')" [class.active]="activeSection === 'prazos'">
+          <li (click)="navigateTo('/dashboard/prazos')" [class.active]="activeSection === 'prazos'">
             <i class="fa fa-calendar-alt"></i> Controle de Prazos
           </li>
-          <li (click)="navigateTo('planejamento')" [class.active]="activeSection === 'planejamento'">
+          <li (click)="navigateTo('/dashboard/planejamento')" [class.active]="activeSection === 'planejamento'">
             <i class="fa fa-tasks"></i> Planejamento
           </li>
           <li><i class="fa fa-folder-open"></i> PGC</li>

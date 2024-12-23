@@ -2,6 +2,7 @@ nav {
   &.nav-background {
     background: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    backdrop-filter: blur(10px); /* Desfoque para o fundo */
   }
 
   &.nav-transparent {
@@ -13,8 +14,79 @@ nav {
   transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-
-.nav-item a {
-  cursor: pointer; /* Faz o cursor virar mãozinha */
+/* Contêiner principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
+/* Botão de menu em dispositivos menores */
+button {
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Destaque ao passar o mouse */
+  }
+
+  i {
+    margin-left: 8px;
+  }
+}
+
+/* Links do Navbar */
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+
+    a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        color: #00bcd4; /* Cor azul clara ao passar o mouse */
+        background-color: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
+      }
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav {
+    &.nav-background {
+      box-shadow: none; /* Remove sombra em dispositivos menores */
+    }
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  ul {
+    flex-direction: column; /* Empilha os links em dispositivos menores */
+
+    li {
+      margin-bottom: 8px;
+
+      a {
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,14 +1,8 @@
-<nav 
-  class="fixed w-full z-10 transition-all duration-300"
-  [ngClass]="{
-    'nav-background': !isScrollingUp,
-    'nav-transparent': isScrollingUp
-  }"
-  [class.hidden]="isHidden"
+<nav
+  [ngClass]="{ 'nav-background': true }"
   id="mainNav"
 >
   <div class="container mx-auto px-4 flex justify-between items-center">
-    <!-- Botão para abrir o menu -->
     <button
       class="text-white inline-flex items-center p-2 rounded-md md:hidden"
       type="button"
@@ -21,26 +15,23 @@
       <i class="fas fa-bars ml-2"></i>
     </button>
 
-    <!-- Menu de navegação -->
-    <div 
+    <div
       class="w-full md:flex md:items-center md:justify-end"
-      [class.hidden]="!isMenuOpen" 
+      [class.hidden]="!isMenuOpen"
       [class.block]="isMenuOpen"
       id="navbarResponsive"
     >
-    <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-white text-sm uppercase">
-      <li class="nav-item">
-        <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToInicio()">Início</a>
-      </li>
-      <li class="nav-item">
-        <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToSobreProjeto()">Sobre o projeto</a>
-      </li>
-      <li class="nav-item">
-        <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToContatos()">Contatos</a>
-      </li>
-    </ul>
-    
-    
+      <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-white text-sm uppercase">
+        <li>
+          <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToInicio()">Início</a>
+        </li>
+        <li>
+          <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToSobreProjeto()">Sobre o Projeto</a>
+        </li>
+        <li>
+          <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToContatos()">Contatos</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

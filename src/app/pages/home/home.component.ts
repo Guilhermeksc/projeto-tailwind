@@ -1,36 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MastheadComponent } from './masthead/masthead.component';
-import { Licitacao360Component } from './licitacao360/licitacao360.component';
-import { ContatosComponent } from './contatos/contatos.component';
-import { CommonModule } from '@angular/common'; 
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, MastheadComponent, NavbarComponent,],
+  imports: [CommonModule, NavbarComponent, RouterOutlet],
 })
-
 export class HomeComponent {
-  @ViewChild(MastheadComponent) masthead!: MastheadComponent;
+  constructor(private router: Router) {}
 
-  navigateToInicio() {
-    if (this.masthead) {
-      this.masthead.showInicio();
-    }
+  onInicioClick() {
+    this.router.navigate(['/inicio']);
   }
 
-  navigateToSobreProjeto() {
-    if (this.masthead) {
-      this.masthead.showSobreProjeto();
-    }
+  onSobreClick() {
+    this.router.navigate(['/sobreProjeto']);
   }
 
-  navigateToContatos() {
-    if (this.masthead) {
-      this.masthead.showContatos();
-    }
+  onContatosClick() {
+    this.router.navigate(['/contatos']);
   }
 }

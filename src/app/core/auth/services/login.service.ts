@@ -17,16 +17,13 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http
-      .post<LoginResponse>(`${this.apiUrl}/login/`, { email, password })
-      .pipe(
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, { email, password }).pipe(
         tap((response) => {
-          // Armazenar o token e o nome do usuário na sessão
-          sessionStorage.setItem('auth-token', response.token);
-          sessionStorage.setItem('username', response.name);
+            sessionStorage.setItem('auth-token', response.token);
+            sessionStorage.setItem('username', response.name);
         })
-      );
-  }
+    );
+}
 
   logout(): void {
     sessionStorage.removeItem('auth-token');

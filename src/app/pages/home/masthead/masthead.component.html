@@ -3,32 +3,5 @@
     <source src="/assets/video/header.mp4" type="video/mp4" />
     Seu navegador não suporta o elemento de vídeo.
   </video>
-  <div class="overlay"></div>
-  <div class="container masthead-content">
-    <div class="content-wrapper">
-      <!-- Conteúdo Principal -->
-      <div *ngIf="currentView === 'inicio'" class="masthead-subheading">
-        Bem-vindo ao <span class="highlight">Licitação 360!</span>
-      </div>
 
-      <!-- Conteúdo Sobre o Projeto -->
-      <app-licitacao360 *ngIf="currentView === 'sobreProjeto'"></app-licitacao360>
-
-      <!-- Conteúdo Contatos -->
-      <div *ngIf="currentView === 'contatos'" class="contatos">
-        <h1>Fale Conosco</h1>
-        <p>Entre em contato para saber mais sobre o Licitação360:</p>
-        <ul>
-          <li>Email: contato.com</li>
-          <li>Telefone: (11) 99999-9999</li>
-          <li>Endereço: Rua Exemplo, 123, São Paulo, SP</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Formulário de Login -->
-    <div *ngIf="currentView === 'inicio'" class="login-wrapper">
-      <app-login></app-login>
-    </div>
-  </div>
 </header>

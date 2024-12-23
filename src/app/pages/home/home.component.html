@@ -1,6 +1,13 @@
-<app-navbar 
-  (inicioClick)="navigateToInicio()" 
-  (sobreClick)="navigateToSobreProjeto()" 
-  (contatosClick)="navigateToContatos()">
-</app-navbar>
-<app-masthead></app-masthead>
+<video id="backgroundVideo" muted autoplay loop playsinline>
+  <source src="/assets/video/header.mp4" type="video/mp4" />
+  <button onclick="document.querySelector('#backgroundVideo').play()">Clique para reproduzir</button>
+</video>
+
+<app-navbar
+  (inicioClick)="onInicioClick()"
+  (sobreClick)="onSobreClick()"
+  (contatosClick)="onContatosClick()"
+></app-navbar>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

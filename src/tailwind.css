@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toast {
+    @apply p-4 rounded-lg shadow-lg border-l-4;
+  }
+  
+  .toast-success {
+    @apply bg-green-500 text-white border-green-700;
+  }
+  
+  .toast-error {
+    @apply bg-red-500 text-white border-red-700;
+  }
+  
+  .toast-warning {
+    @apply bg-yellow-400 text-black border-yellow-600;
+  }
+  
+  .toast-info {
+    @apply bg-blue-500 text-white border-blue-700;
+  }
+  
+  .toast-title {
+    @apply font-bold;
+  }
+  
+  .toast-message {
+    @apply text-sm;
+  }
