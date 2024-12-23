@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [AuthFormComponent, CommonModule], // Adicione o AuthFormComponent aqui
+  imports: [ CommonModule],
+
 })
 export class RegisterComponent {
   isLoading: boolean = false;

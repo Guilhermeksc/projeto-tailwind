@@ -1,1 +1,88 @@
-@use '../../styles/auth' as auth;
+/* auth-form.component.scss */
+
+/* Estilos globais para html e body */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Garante que ocupe toda a altura da tela */
+    overflow: hidden; /* Remove barras de rolagem */
+  }
+  
+  .auth-form {
+    position: relative;
+    background-color: rgba(8, 21, 58, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5),
+                0 0 5px rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease-out forwards;
+    border: 2px solid transparent;
+  
+    /* Media Queries para responsividade */
+    @media (min-width: 1024px) {
+      bottom: 0px; /* Empurra mais em telas médias */
+    }
+    
+    @media (min-width: 1440px) {
+      margin-bottom: 120px; /* Empurra mais em telas grandes */
+    }
+  
+    /* Estilos para o título */
+    h2 {
+      text-align: center;
+      color: #fff; /* Texto branco */
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  
+    /* Estilos para o formulário */
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      /* Estilos para o botão */
+      button {
+        background-color: #62aaff;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+  
+        &:hover {
+          transform: translateY(-3px); /* Efeito hover */
+          background-color: #1a73e8; /* Azul mais escuro */
+          box-shadow: 0 5px 15px rgba(26, 115, 232, 0.5); /* Sombra */
+        }
+  
+        &:active {
+          transform: scale(0.97); /* Reduz ao clicar */
+          box-shadow: none;
+        }
+      }
+    }
+  
+    /* Animação de fade-in ao carregar */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  

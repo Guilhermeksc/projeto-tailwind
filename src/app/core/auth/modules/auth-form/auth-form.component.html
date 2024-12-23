@@ -1,146 +1,43 @@
+<!-- auth-form.component.html -->
 <app-welcome></app-welcome>
 <div class="auth-form">
-    
+  
   <!-- Título dinâmico -->
-  <h2 *ngIf="type === 'login'">Login</h2>
-  <h2 *ngIf="type === 'register'">Registrar</h2>
-  <h2 *ngIf="type === 'reset-password'">Redefinir Senha</h2>
-  <h2 *ngIf="type === 'recover-password'">Recuperar Senha</h2>
-  <h2 *ngIf="type === 'validate-email'">Validação de E-mail</h2>
+  <h2>{{ getTitle() }}</h2>
 
   <form (ngSubmit)="onSubmit()">
-    <!-- Campo de e-mail (presente em todos os contextos, exceto redefinição de senha) -->
-    <label *ngIf="type !== 'reset-password'" for="email">E-mail</label>
-    <input
-      *ngIf="type !== 'reset-password'"
-      type="email"
-      id="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Seu e-mail"
-      required
-    />
+    <email-input [(email)]="email"></email-input>
 
     <ng-container *ngIf="type === 'register'">
-      <label for="name">Nome</label>
-      <input
-        type="text"
-        id="name"
-        [(ngModel)]="name"
-        name="name"
-        placeholder="Seu nome"
-        required
-      />
-
-      <label for="email">E-mail</label>
-      <input
-        type="email"
-        id="email"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Seu e-mail"
-        required
-      />
-
-      <label for="password">Senha</label>
-      <input
-        type="password"
-        id="password"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Crie sua senha"
-        required
-      />
-
-      <label for="confirmPassword">Confirmar Senha</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        [(ngModel)]="confirmPassword"
-        name="confirmPassword"
-        placeholder="Confirme sua senha"
-        required
-      />
+      <name-input [(name)]="name"></name-input>
     </ng-container>
-    
-    <!-- Campo de senha para login -->
-    <ng-container *ngIf="type === 'login'">
-        <label for="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          [(ngModel)]="password"
-          name="password"
-          placeholder="Sua senha"
-          required
-        />
-      </ng-container>
 
-    <!-- Campos para redefinição de senha -->
-    <ng-container *ngIf="type === 'reset-password'">
-        <label for="currentPassword">Senha Atual</label>
-        <input
-          type="password"
-          id="currentPassword"
-          [(ngModel)]="currentPassword"
-          name="currentPassword"
-          placeholder="Digite sua senha atual"
-          required
-        />
-  
-        <label for="newPassword">Nova Senha</label>
-        <input
-          type="password"
-          id="newPassword"
-          [(ngModel)]="newPassword"
-          name="newPassword"
-          placeholder="Digite sua nova senha"
-          required
-        />
-  
-        <label for="confirmNewPassword">Confirmar Nova Senha</label>
-        <input
-          type="password"
-          id="confirmNewPassword"
-          [(ngModel)]="confirmNewPassword"
-          name="confirmNewPassword"
-          placeholder="Confirme sua nova senha"
-          required
-        />
-      </ng-container>
+    <password-input 
+      [(value)]="password" 
+      label="Senha" 
+      name="password" 
+      placeholder="Sua senha" 
+      [required]="true">
+    </password-input>
 
-    <!-- Botão dinâmico -->
-    <button type="submit">
-      <ng-container *ngIf="type === 'login'">Entrar</ng-container>
-      <ng-container *ngIf="type === 'register'">Registrar</ng-container>
-      <ng-container *ngIf="type === 'reset-password'">Salvar</ng-container>
-      <ng-container *ngIf="type === 'recover-password'">Enviar Link</ng-container>
-      <ng-container *ngIf="type === 'validate-email'">Confirmar</ng-container>
-    </button>
+    <ng-container *ngIf="type === 'register'">
+      <password-input 
+        [(value)]="confirmPassword" 
+        label="Confirmar Senha" 
+        name="confirmPassword" 
+        placeholder="Confirme sua senha" 
+        [required]="true">
+      </password-input>
+    </ng-container>
 
-    <!-- Links dinâmicos -->
-    <div class="auth-invite" *ngIf="type === 'login'">
-        <p>
-          Não tem uma conta?
-          <a (click)="navigateToRegister($event)">Registre-se</a>
-        </p>
-        <p>
-          Esqueceu a senha?
-          <a (click)="navigateToPasswordReset($event)">Recupere aqui</a>
-        </p>
-      </div>
-    
-      <div class="auth-invite" *ngIf="type === 'register'">
-        <p>
-          Já tem uma conta?
-          <a (click)="navigateToLogin($event)">Entrar</a>
-        </p>
-      </div>
-    
-      <div class="auth-invite" *ngIf="type === 'recover-password' || type === 'reset-password'">
-        <p>
-          <a (click)="navigateToLogin($event)">Voltar ao Login</a>
-      </p>
-    </div>
+    <button type="submit">{{ type === 'login' ? 'Entrar' : 'Registrar' }}</button>
   </form>
+
+  <div class="auth-invite">
+    <p>
+      {{ type === 'login' ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
+      <a (click)="toggleFormType()">{{ type === 'login' ? 'Registre-se' : 'Entrar' }}</a>
+    </p>
+  </div>
+  
 </div>

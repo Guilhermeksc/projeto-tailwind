@@ -1,9 +1,10 @@
+// login.component.ts
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { AuthFormComponent } from '../auth-form/auth-form.component';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { AuthFormComponent } from '../auth-form/auth-form.component';
 
 @Component({
   standalone: true,
@@ -21,7 +22,7 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {}
 
-  handleLogin(event: { email: string; password?: string }) {
+  handleLogin(event: { email: string; password: string }) {
     if (!event.password) {
       this.toastr.error('A senha é obrigatória.', 'Erro');
       return;
@@ -40,6 +41,21 @@ export class LoginComponent {
         console.error('Erro no login:', err);
         this.isLoading = false; // Desativa o carregamento
         this.toastr.error('Erro ao fazer login. Verifique suas credenciais.', 'Erro');
+      },
+    });
+  }
+
+  handleRegister(event: { name: string; email: string; password: string; confirmPassword: string }) {
+    // Implemente a lógica de registro aqui
+    console.log('Registro recebido:', event);
+    // Exemplo:
+    this.loginService.register(event).subscribe({
+      next: (response) => {
+        this.toastr.success('Registro realizado com sucesso!', 'Sucesso');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.toastr.error('Erro ao registrar. Tente novamente.', 'Erro');
       },
     });
   }

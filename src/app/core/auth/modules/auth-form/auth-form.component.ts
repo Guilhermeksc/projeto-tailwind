@@ -1,83 +1,54 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+// auth-form.component.ts
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
-import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
-import { WelcomeComponent } from '../welcome/welcome.component';
 import { CommonModule } from '@angular/common';
+import { EmailInputComponent } from '../../components/email-input/email-input.component';
+import { NameInputComponent } from '../../components/name-input/name-input.component';
+import { PasswordInputComponent } from '../../components/password-input/password-input.component';
+import { WelcomeComponent } from '../welcome/welcome.component';
 
 @Component({
-  standalone: true,
-  selector: 'app-auth-form',
+  selector: 'auth-form',
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
-  imports: [FormsModule, WelcomeComponent, CommonModule, HttpClientModule],
+  standalone: true,
+  imports: [
+    WelcomeComponent,
+    FormsModule,
+    CommonModule,
+    EmailInputComponent,
+    NameInputComponent,
+    PasswordInputComponent
+  ]
 })
-
 export class AuthFormComponent {
-  @Input() type: 'login' | 'register' | 'reset-password' | 'recover-password' | 'validate-email' = 'login';
-  @Output() formSubmit = new EventEmitter<{
-    email: string;
-    name?: string;
-    password?: string;
-    confirmPassword?: string;
-    currentPassword?: string;
-    newPassword?: string;
-  }>();
-
   email: string = '';
-  name: string = ''; // Nome para registro
+  name: string = '';
   password: string = '';
-  confirmPassword: string = ''; // Confirmação de senha
-  currentPassword: string = '';
-  newPassword: string = '';
-  confirmNewPassword: string = '';
+  confirmPassword: string = '';
 
-  constructor(private router: Router) {}
+  type: 'login' | 'register' = 'login'; // Tipo atual do formulário
 
-  onSubmit() {
-    if (this.type === 'reset-password') {
-      if (this.newPassword !== this.confirmNewPassword) {
-        alert('As novas senhas não correspondem.');
-        return;
+  @Output() submitLogin: EventEmitter<{ email: string; password: string }> = new EventEmitter();
+  @Output() submitRegister: EventEmitter<{ name: string; email: string; password: string; confirmPassword: string }> = new EventEmitter();
+
+  getTitle(): string {
+    return this.type === 'login' ? 'Login' : 'Registro';
+  }
+
+  onSubmit(): void {
+    if (this.type === 'login') {
+      if (this.email && this.password) {
+        this.submitLogin.emit({ email: this.email, password: this.password });
       }
-      this.formSubmit.emit({
-        email: this.email,
-        currentPassword: this.currentPassword,
-        newPassword: this.newPassword,
-        confirmPassword: this.confirmNewPassword,
-      });
     } else if (this.type === 'register') {
-      if (this.password !== this.confirmPassword) {
-        alert('As senhas não coincidem.');
-        return;
+      if (this.name && this.email && this.password && this.confirmPassword) {
+        this.submitRegister.emit({ name: this.name, email: this.email, password: this.password, confirmPassword: this.confirmPassword });
       }
-      this.formSubmit.emit({
-        email: this.email,
-        name: this.name,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-      });
-    } else if (this.type === 'login') {
-      this.formSubmit.emit({ email: this.email, password: this.password });
-    } else {
-      this.formSubmit.emit({ email: this.email });
     }
   }
 
-  navigateToRegister(event: Event) {
-    event.preventDefault();
-    this.router.navigate(['/register']);
-  }
-
-  navigateToPasswordReset(event: Event) {
-    event.preventDefault();
-    this.router.navigate(['/password-reset']);
-  }
-
-  navigateToLogin(event: Event) {
-    event.preventDefault();
-    this.router.navigate(['/login']);
+  toggleFormType(): void {
+    this.type = this.type === 'login' ? 'register' : 'login';
   }
 }

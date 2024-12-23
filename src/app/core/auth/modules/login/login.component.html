@@ -1,9 +1,10 @@
+<!-- login.component.html -->
 <div *ngIf="isLoading" class="loading-overlay">
   <div class="loading-spinner"></div>
   <p>Aguarde, estamos processando seu login...</p>
 </div>
 
-<app-auth-form 
-  [type]="'login'"
-  (formSubmit)="handleLogin($event)">
-</app-auth-form>
+<auth-form 
+  (submitLogin)="handleLogin($event)" 
+  (submitRegister)="handleRegister($event)">
+</auth-form>
