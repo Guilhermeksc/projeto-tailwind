@@ -6,6 +6,8 @@ sudo apt install libreoffice-core libreoffice-common
 ssh root@195.200.1.112  
 
 ng cache clean
+ng build --configuration production
+tar -cvf licitacao360.tar -C dist/projeto-tailwind/browser .
 
 ng build
 
@@ -46,8 +48,12 @@ sudo systemctl restart nginx
 sudo rm /etc/nginx/sites-enabled/licitacao360
 sudo ln -s /etc/nginx/sites-available/multiple_sites /etc/nginx/sites-enabled/multiple_sites
 
-sudo nano /etc/nginx/sites-available/default
 
+sudo nano /etc/nginx/sites-enabled/licitacao360 /etc/nginx/sites-available/default
+
+
+systemctl daemon-reload
+systemctl restart django.service
 sudo nginx -t
 sudo systemctl restart nginx
 
@@ -55,8 +61,5 @@ curl -I http://195.200.1.112
 
 
 ls -l /var/www/licitacao360
-
-
 rm -r /var/www/licitacao360
-
 mkdir /var/www/licitacao360
