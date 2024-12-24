@@ -18,6 +18,8 @@ cd "C:\Users\guilh\Documents\angular\tailwind\projeto-tailwind"
 scp -C licitacao360.tar root@195.200.1.112:/root/
 tar -xvf licitacao360.tar -C /var/www/licitacao360
 
+source venv/bin/activate
+
 
 ng serve
 
