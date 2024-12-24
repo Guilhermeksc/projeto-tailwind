@@ -8,6 +8,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 
 export class FlyingRobotComponent implements OnInit {
   private robotElement!: HTMLElement;
+  private isHeld: boolean = false;
   isLoading = false;
 
   constructor(private renderer: Renderer2) {}
@@ -15,11 +16,63 @@ export class FlyingRobotComponent implements OnInit {
   ngOnInit(): void {
     this.robotElement = document.getElementById('robot')!;
     this.initializeRobot();
-  }
+  
+    // Adiciona evento de clique no robô
+    this.robotElement.addEventListener('click', () => this.handleRobotClick());
 
+        // Adiciona eventos para "segurar" e "soltar" o robô
+    this.robotElement.addEventListener('mousedown', () => this.handleRobotHold());
+    document.addEventListener('mouseup', () => this.handleRobotRelease());
+  }
+  
+  private handleRobotClick() {
+    // Gera um ângulo aleatório entre 80 e 150 graus
+    const randomRotation = Math.random() < 0.5 
+      ? - (80 + Math.random() * 70) // Gira para a esquerda
+      : 80 + Math.random() * 70;   // Gira para a direita
+  
+    // Remove temporariamente a animação 'float'
+    this.robotElement.classList.remove('float-animation');
+  
+    // Aplica a rotação ao robô
+    this.robotElement.style.transform = `rotate(${randomRotation}deg)`;
+  
+    // Restaura o estado original após 1 segundo
+    setTimeout(() => {
+      this.robotElement.style.transform = `rotate(0deg)`; // Volta ao estado inicial
+      setTimeout(() => {
+        this.robotElement.classList.add('float-animation'); // Restaura a animação após a transição
+      }, 500); // Aguarda a transição terminar
+    }, 1000);
+  }
+  
+  private handleRobotHold() {
+    this.isHeld = true;
+  
+    // Remove temporariamente a animação de flutuação
+    this.robotElement.classList.remove('float-animation');
+  
+    // Aplica um efeito visual para indicar que está sendo segurado
+    this.robotElement.style.transform = `scale(0.9)`; // Aumenta o tamanho para simular um "aperto"
+  }
+  
+  private handleRobotRelease() {
+    if (!this.isHeld) return; // Não faz nada se o robô não estiver sendo segurado
+  
+    this.isHeld = false;
+  
+    // Restaura o tamanho original
+    this.robotElement.style.transform = `rotate(0deg) scale(1)`;
+  
+    // Restaura a animação de flutuação após um pequeno atraso
+    setTimeout(() => {
+      this.robotElement.classList.add('float-animation');
+    }, 200); // Pequeno atraso para transição suave
+  }
+ 
   private initializeRobot() {
     this.moveRobotRandomly();
-    setInterval(() => this.moveRobotRandomly(), 2000); // Movimenta a cada 2 segundos
+    setInterval(() => this.moveRobotRandomly(), 1500); // Movimenta a cada 2 segundos
     document.addEventListener('mousemove', (event) => this.avoidMouse(event));
   }
 
@@ -57,7 +110,7 @@ export class FlyingRobotComponent implements OnInit {
     const robotRect = this.robotElement.getBoundingClientRect();
     const mouseX = event.clientX;
     const mouseY = event.clientY;
-    const distance = 500;
+    const distance = 100;
 
     let newX = robotRect.left + (robotRect.left < mouseX ? -distance : distance);
     let newY = robotRect.top + (robotRect.top < mouseY ? -distance : distance);

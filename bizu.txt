@@ -50,3 +50,11 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 curl -I http://195.200.1.112  
+
+
+ls -l /var/www/licitacao360
+
+
+rm -r /var/www/licitacao360
+
+mkdir /var/www/licitacao360

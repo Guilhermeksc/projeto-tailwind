@@ -14,7 +14,7 @@
   background-color: rgba(8, 21, 58, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 15px;
-  padding: 25px;
+  padding: 25px; /* Adiciona espaçamento interno */
   max-width: 450px;
   width: 100%; /* Garante que o formulário não ultrapasse o limite */
   box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.9);
@@ -26,10 +26,19 @@
   h2 {
     text-align: center;
     color: #fff; /* Texto branco */
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-size: 1.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+  }
+}
+@media (max-width: 768px) {
+  .auth-form-container {
+    padding: 5px 20px; /* Reduz apenas o espaçamento vertical (topo e inferior) */
+  }
+  
+  .auth-form {
+    padding: 15px; /* Reduz o espaçamento interno do formulário */
   }
 }
 

@@ -6,7 +6,11 @@
     width: 100%;
     margin-bottom: 20px;
   }
-  
+  @media (max-width: 768px) {
+    .auth-input-field  {
+        margin-bottom: 10px;
+    }
+  }  
 /* Campo de Senha */
 .password-field {
     position: relative;
@@ -103,7 +107,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    margin-top: 20px; /* Espaçamento do topo */
+    margin-top: 5px; /* Espaçamento do topo */
     align-self: center; /* Garante que o botão esteja centralizado */
   }
   

@@ -66,6 +66,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  .masthead-subheading .highlight {
+    font-size: 3.5rem; /* Aumenta o tamanho da fonte */
+  }
+  
+  .masthead-subheading .secondary-text {
+    font-size: 2rem;
+    margin-top: 1px;
+    margin-bottom: -20px;
+  }
+}
+
 @media (min-width: 1200px) {
   .masthead-subheading {
     font-size: 4rem;

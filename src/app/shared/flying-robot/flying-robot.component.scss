@@ -1,23 +1,18 @@
 #robot {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: url('/assets/img/robot.png') no-repeat center center / contain;
-    z-index: 10;
-    pointer-events: none; /* Impede interações do mouse */
-    transition: transform 0.5s ease-in-out, left 0.5s ease-in-out, top 0.5s ease-in-out;
-  }
-
-  .loading-indicator {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-  }
+  position: fixed; /* Evita influenciar o layout da página */
+  will-change: transform;
+  pointer-events: auto;
+  cursor: pointer; 
+  width: 100px;
+  height: 100px;
+  background: url('/assets/img/robot.png') no-repeat center center / contain;
+  transition: transform 0.5s ease-in-out, left 0.5s ease-in-out, top 0.5s ease-in-out;
+}
   
+.float-animation {
+  animation: float 2s infinite ease-in-out;
+}
+
   @keyframes spin {
     from {
       transform: rotate(0deg);
@@ -26,7 +21,26 @@
       transform: rotate(360deg);
     }
   }
-  
+
+    
+  @keyframes spin-dizzy {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      transform: rotate(90deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(180deg) scale(0.8);
+    }
+    75% {
+      transform: rotate(270deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
   @keyframes float {
     0% {
       transform: translateY(0);
@@ -37,9 +51,5 @@
     100% {
       transform: translateY(0);
     }
-  }
-  
-  #robot {
-    animation: float 2s infinite ease-in-out;
   }
   
