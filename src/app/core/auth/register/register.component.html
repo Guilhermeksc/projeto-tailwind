@@ -1,0 +1,51 @@
+<!-- <div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Processando cadastro...</p>
+</div> -->
+
+<auth-form title="Registrar-se">
+  <form (ngSubmit)="handleSubmit()">
+    <!-- Campo Nome -->
+    <name-input
+      [(name)]="name"
+      [required]="true"
+      (nameChange)="onNameChange($event)"
+    ></name-input>
+
+    <!-- Campo E-mail -->
+    <email-input
+      [(email)]="email"
+      [required]="true"
+      (emailChange)="onEmailChange($event)"
+    ></email-input>
+
+    <!-- Campo Senha -->
+    <password-input
+      [(value)]="password"
+      [required]="true"
+      label="Senha"
+      (valueChange)="onPasswordChange($event)"
+    ></password-input>
+
+    <!-- Campo Confirmar Senha -->
+    <password-input
+      [(value)]="confirmPassword"
+      [required]="true"
+      label="Confirmar Senha"
+      (valueChange)="onConfirmPasswordChange($event)"
+    ></password-input>
+
+    <!-- Botão Registrar -->
+    <button type="submit" class="auth-form-button" [disabled]="isLoading">
+      Registrar
+    </button>
+  </form>
+  <!-- Links Adicionais -->
+  <div class="additional-links">
+    <p>
+      Já possuo Cadastro. 
+      <span class="hyperlink" (click)="navigateToLogin()">Login</span>
+    </p>
+  </div>
+  
+</auth-form>

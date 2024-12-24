@@ -1,0 +1,8 @@
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Validando e-mail...</p>
+</div>
+
+<div *ngIf="!isLoading" class="validation-message">
+  <p>Estamos processando a validação do seu e-mail. Caso não seja redirecionado, clique <a routerLink="/login">aqui</a>.</p>
+</div>

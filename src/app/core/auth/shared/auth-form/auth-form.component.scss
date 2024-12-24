@@ -1,0 +1,59 @@
+/* Contêiner Principal */
+.auth-form-container {
+  position: absolute; /* Garante que o formulário seja posicionado fora do fluxo */
+  bottom: 0; /* Posiciona na parte inferior da tela */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Ajusta a centralização */
+  width: 100%; /* Ocupa toda a largura disponível */
+  max-width: 450px; /* Limita a largura máxima */
+  padding: 20px; /* Adiciona espaçamento interno */
+  box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+}
+
+.auth-form {
+  background-color: rgba(8, 21, 58, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 450px;
+  width: 100%; /* Garante que o formulário não ultrapasse o limite */
+  box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+  border: 2px solid transparent;
+
+  h2 {
+    text-align: center;
+    color: #fff; /* Texto branco */
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+/* Animação de fade-in ao carregar */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries para Responsividade */
+@media (min-width: 1024px) {
+  .auth-form-container {
+    padding-bottom: 40px; /* Aumenta o espaçamento inferior em telas maiores */
+  }
+}
+
+@media (min-width: 1440px) {
+  .auth-form-container {
+    padding-bottom: 60px; /* Aumenta ainda mais o espaçamento inferior */
+  }
+}

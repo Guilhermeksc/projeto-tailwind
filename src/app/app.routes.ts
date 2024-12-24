@@ -3,11 +3,11 @@ import { InicioComponent } from './pages/home/inicio/inicio.component';
 import { Licitacao360Component } from './pages/home/licitacao360/licitacao360.component';
 import { ContatosComponent } from './pages/home/contatos/contatos.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthGuard } from './core/auth/guard/auth-guard.service';
-import { ValidateEmailComponent } from './core/auth/modules/validate-email/validate-email.component';
-import { RegisterComponent } from './core/auth/modules/register/register.component';
-import { PasswordResetComponent } from './core/auth/modules/password-reset/password-reset.component';	
-import { ResetPasswordComponent } from './core/auth/modules/reset-password/reset-password.component';
+import { AuthGuard } from './core/auth/auth-guard.service';
+import { ValidateEmailComponent } from './core/auth/validate-email/validate-email.component';
+import { RegisterComponent } from './core/auth/register/register.component';
+import { PasswordChangeComponent } from './core/auth/password-change/password-change.component';
+import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
@@ -19,7 +19,7 @@ import { AnaliseComponent } from './pages/dashboard/content/analise/analise.comp
 import { ApresentacaoComponent } from './pages/dashboard/content/apresentacao/apresentacao.component';
 import { PrazosComponent } from './pages/dashboard/content/prazos/prazos.component';
 import { PlanejamentoComponent } from './pages/dashboard/content/planejamento/planejamento.component';
-import { LoginComponent } from './core/auth/modules/login/login.component';
+import { LoginComponent } from './core/auth/login/login.component';
 
 export const routes: Routes = [
   {
@@ -32,8 +32,8 @@ export const routes: Routes = [
       { path: 'sobreProjeto', component: Licitacao360Component },
       { path: 'contatos', component: ContatosComponent },
       { path: 'validate-email/:token', component: ValidateEmailComponent },
-      { path: 'password-reset', component: PasswordResetComponent },
-      { path: 'reset-password/:token', component: ResetPasswordComponent },
+      { path: 'password-change', component: PasswordChangeComponent },
+      { path: 'forgot-password/:token', component: ForgotPasswordComponent },
     ],
   },
   {

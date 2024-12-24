@@ -1,0 +1,229 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Garante que ocupe toda a altura da tela */
+  overflow: hidden; /* Remove barras de rolagem */
+}
+
+.auth-form {
+  position: relative;
+  background-color: rgba(8, 21, 58, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px 5px rgba(98, 170, 255, 0.5),
+              0 0 5px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-out forwards;
+  border: 2px solid transparent;
+}
+
+@media (min-width: 1024px) {
+  .auth-form {
+      bottom: 0px; /* Empurra mais em telas médias */
+  }
+}
+
+@media (min-width: 1440px) {
+  .auth-form {
+      margin-bottom: 120px; /* Empurra mais em telas grandes */
+  }
+}
+
+    h2 {
+      text-align: center;
+      color: #fff; /* Texto branco */
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  
+    label {
+      display: block;
+      color: #b3c7f7;
+      font-size: 1rem;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    input:focus {
+      border-color: #62aaff;
+      box-shadow: 0 0 8px rgba(98, 170, 255, 0.5);
+    }
+    
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+      
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 8px;
+        font-size: 1rem;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        outline: none;
+        transition: all 0.3s ease;
+  
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+  
+        &:focus {
+          border-color: #62aaff; /* Azul mais claro no foco */
+          box-shadow: 0 0 8px rgba(98, 170, 255, 0.5); /* Brilho */
+        }
+      }
+  
+      button {
+        background-color: #62aaff;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+  
+        &:hover {
+          transform: translateY(-3px); /* Efeito hover */
+          background-color: #1a73e8; /* Azul mais escuro */
+          box-shadow: 0 5px 15px rgba(26, 115, 232, 0.5); /* Sombra */
+        }
+  
+        &:active {
+          transform: scale(0.97); /* Reduz ao clicar */
+          box-shadow: none;
+        }
+      }
+    }
+  
+    .auth-invite {
+      margin-top: 15px;
+      text-align: center;
+      color: #b3c7f7; /* Azul claro */
+  
+      a {
+        color: #62aaff;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #1a73e8; /* Azul mais escuro no hover */
+          text-decoration: underline;
+        }
+      }
+    }
+  
+  
+  /* Animação de fade-in ao carregar */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .auth-invite a {
+    cursor: pointer;
+  }
+
+  .validation-message {
+    display: flex;
+    align-items: center;
+    color: green;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  
+    i {
+      margin-right: 8px;
+    }
+  }
+
+  .password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-field input {
+    width: 100%;
+    padding-right: 40px; /* Espaço para o ícone */
+  }
+  
+  .password-field button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .password-field img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .password-field button:focus {
+    outline: none;
+  }
+
+  .auth-form button[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .auth-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .auth-invite {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .auth-invite p {
+    margin: 5px 0;
+  }
+  
+  .auth-invite a {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .auth-invite a:hover {
+    text-decoration: underline;
+  }

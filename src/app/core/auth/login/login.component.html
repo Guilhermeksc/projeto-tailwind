@@ -1,0 +1,42 @@
+<!-- login.component.html -->
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>Aguarde, estamos processando seu login...</p>
+</div>
+
+<auth-form title="Login">
+  <form (ngSubmit)="handleSubmit()">
+    <!-- Campo de E-mail -->
+    <email-input
+      [(email)]="email"
+      [required]="true"
+      (emailChange)="onEmailChange($event)"
+    ></email-input>
+
+    <!-- Campo de Senha -->
+    <password-input
+      [(value)]="password"
+      [required]="true"
+      (valueChange)="onPasswordChange($event)"
+    ></password-input>
+
+    <!-- Botão de Login -->
+    <button type="submit" class="auth-form-button" [disabled]="isLoading">
+      Entrar
+    </button>
+  </form>
+
+  <!-- Links Adicionais -->
+  <div class="additional-links">
+    <p>
+      Não possui Cadastro? 
+      <span class="hyperlink" (click)="navigateToRegister()">Registre-se</span>
+    </p>
+    <p>
+      Clique 
+      <span class="hyperlink" (click)="navigateToChangePassword()">aqui</span> 
+      para alterar ou recuperar senha
+    </p>
+  </div>
+  
+</auth-form>

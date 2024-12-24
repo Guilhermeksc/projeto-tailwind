@@ -1,0 +1,52 @@
+## limpar o cache
+sudo apt update
+sudo apt install libreoffice-core libreoffice-common
+
+@Licitacao360.1000
+ssh root@195.200.1.112  
+
+ng cache clean
+
+ng build
+
+ng build --configuration production --base-href /static/ --deploy-url /static/
+
+tar -cvf licitacao360.tar -C dist/projeto-tailwind/browser .
+
+cd "C:\Users\guilh\Documents\angular\tailwind\projeto-tailwind"
+
+scp -C licitacao360.tar root@195.200.1.112:/root/
+tar -xvf licitacao360.tar -C /var/www/licitacao360
+
+
+ng serve
+
+testar servidor
+
+lite-server --baseDir="dist/frontend"
+
+C:\Users\guilh\Documents\angular\aya\ayabioarquitetura\bizu.txt
+
+cd Users\guilh\Documents\angular\aya\ayabioarquitetura
+scp -C projetoaya.tar root@195.200.1.112:/home/guilherme/
+
+
+
+sudo tar -xvf projetoaya.tar -C ../aya
+
+tar -xvf projetoaya.tar -C ../../django/back/backend_django/frontendaya
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+
+
+sudo rm /etc/nginx/sites-enabled/licitacao360
+sudo ln -s /etc/nginx/sites-available/multiple_sites /etc/nginx/sites-enabled/multiple_sites
+
+sudo nano /etc/nginx/sites-available/default
+
+sudo nginx -t
+sudo systemctl restart nginx
+
+curl -I http://195.200.1.112  

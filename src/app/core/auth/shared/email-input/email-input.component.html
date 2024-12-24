@@ -1,0 +1,13 @@
+<!-- email-input.component.html -->
+<div class="auth-input-field">
+  <label for="email">E-mail</label>
+  <input
+    type="email"
+    id="email"
+    [(ngModel)]="email"
+    name="email"
+    placeholder="Seu e-mail"
+    [required]="required"
+    (ngModelChange)="onEmailChange($event)"
+  />
+</div>

@@ -36,7 +36,12 @@
               "src/tailwind.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/core/auth/shared/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {

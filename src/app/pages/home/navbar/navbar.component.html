@@ -2,7 +2,8 @@
   [ngClass]="{ 'nav-background': true }"
   id="mainNav"
 >
-  <div class="container mx-auto px-4 flex justify-between items-center">
+
+  <div class="container mx-auto px-4 flex justify-between items-center">    
     <button
       class="text-white inline-flex items-center p-2 rounded-md md:hidden"
       type="button"
@@ -21,6 +22,7 @@
       [class.block]="isMenuOpen"
       id="navbarResponsive"
     >
+    
       <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-white text-sm uppercase">
         <li>
           <a class="hover:text-gray-300 cursor-pointer" (click)="navigateToInicio()">Início</a>
@@ -33,5 +35,6 @@
         </li>
       </ul>
     </div>
+    
   </div>
 </nav>

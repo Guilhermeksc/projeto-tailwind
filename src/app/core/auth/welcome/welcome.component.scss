@@ -1,0 +1,99 @@
+.main-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  min-height: calc(100vh - 200px); /* Ocupa o espaço restante, subtraindo a altura da navbar e auth-form */
+  text-align: center; /* Centraliza o texto */
+  padding-bottom: 150px; /* Adiciona espaçamento interno */
+}
+
+.content {
+  max-width: 600px; /* Limita a largura do conteúdo */
+  animation: fadeIn 1.5s ease-in-out; /* Adiciona animação de entrada */
+}
+
+/* Estilo do Título */
+.masthead-subheading {
+  font-size: 2rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center; 
+  color: #333;
+}
+
+.masthead-subheading .highlight {
+  display: block; /* Faz o "Licitação360" ocupar uma linha completa */
+  font-size: 5rem; /* Aumenta o tamanho da fonte */
+  font-weight: bold;
+  background: linear-gradient(90deg, #1a73e8, #62aaff, #ffffff, #62aaff, #1a73e8); /* Gradiente azul para branco */
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Necessário para navegadores Webkit */
+  animation: lightPulse 3s ease-in-out infinite; /* Animação */
+}
+
+.masthead-subheading .secondary-text {
+  display: block; /* Garante que o texto fique em uma linha separada */
+  font-size: 3rem; /* Um pouco maior para dar mais destaque */
+  color: white; /* Tom inicial mais claro */
+  margin-top: 10px; /* Espaçamento entre os textos */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 
+               0 0 20px rgba(62, 166, 255, 0.4),
+               0 0 30px rgba(62, 166, 255, 0.3); /* Brilho nas bordas do texto */
+}
+
+/* Responsividade */
+@media (max-height: 1100px) {
+  .main-container {
+    align-items: flex-start; /* Alinha o conteúdo mais acima */
+    padding-top: -40px; /* Espaçamento superior */
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .masthead-subheading {
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .masthead-subheading {
+    font-size: 3rem;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .masthead-subheading {
+    font-size: 4rem;
+    padding: 40px;
+  }
+}
+
+/* Animação para mover o gradiente */
+@keyframes lightPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
