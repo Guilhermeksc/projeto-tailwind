@@ -9,6 +9,10 @@ ng cache clean
 ng build --configuration production
 tar -cvf licitacao360.tar -C dist/projeto-tailwind/browser .
 
+
+ng build --configuration development
+
+
 ng build
 
 ng build --configuration production --base-href /static/ --deploy-url /static/
@@ -36,6 +40,7 @@ scp -C projetoaya.tar root@195.200.1.112:/home/guilherme/
 
 
 
+
 sudo tar -xvf projetoaya.tar -C ../aya
 
 tar -xvf projetoaya.tar -C ../../django/back/backend_django/frontendaya
@@ -51,7 +56,7 @@ sudo ln -s /etc/nginx/sites-available/multiple_sites /etc/nginx/sites-enabled/mu
 
 sudo nano /etc/nginx/sites-enabled/licitacao360 /etc/nginx/sites-available/default
 
-
+python manage.py reset_users  
 systemctl daemon-reload
 systemctl restart django.service
 sudo nginx -t
@@ -63,3 +68,8 @@ curl -I http://195.200.1.112
 ls -l /var/www/licitacao360
 rm -r /var/www/licitacao360
 mkdir /var/www/licitacao360
+
+curl -X POST http://127.0.0.1:8000/api/login/ -H "Content-Type: application/json" -d "{\"username\": \"guilherme\", \"password\": \"bibico1000\"}"
+
+
+curl -X POST http://127.0.0.1:8000/api/register/ -H "Content-Type: application/json" -d "{\"name\": \"guilhermeksc\", \"email\": \"guilhermekscampos@gmail.com\", \"password\": \"bibico200\"}"

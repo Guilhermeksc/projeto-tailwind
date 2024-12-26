@@ -8,9 +8,9 @@
   <form (ngSubmit)="handleSubmit()">
     <!-- Campo de E-mail -->
     <email-input
-      [(email)]="email"
+      [(email)]="username"
       [required]="true"
-      (emailChange)="onEmailChange($event)"
+      (emailChange)="onUserChange($event)"
     ></email-input>
 
     <!-- Campo de Senha -->

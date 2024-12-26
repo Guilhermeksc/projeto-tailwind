@@ -1,3 +1,5 @@
+// login.component.ts
+
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
@@ -23,7 +25,7 @@ import { PasswordInputComponent } from '../shared/password-input/password-input.
 })
 export class LoginComponent {
   isLoading: boolean = false; // Estado de carregamento
-  email: string = '';
+  username: string = '';
   password: string = '';
   rememberMe: boolean = false; // Estado do checkbox lembrar
 
@@ -34,8 +36,8 @@ export class LoginComponent {
   ) {}
 
   // Atualiza o e-mail ao modificar
-  onEmailChange(value: string): void {
-    this.email = value;
+  onUserChange(value: string): void {
+    this.username = value;
   }
 
   // Atualiza a senha ao modificar
@@ -45,34 +47,22 @@ export class LoginComponent {
 
   // Submete o formulário de login
   handleSubmit(): void {
-    if (!this.email || !this.password) {
+    if (!this.username || !this.password) {
       this.toastr.error('Todos os campos são obrigatórios.', 'Erro');
       return;
     }
-
+  
     this.isLoading = true;
-
-    this.loginService.login(this.email, this.password).subscribe({
+  
+    this.loginService.login(this.username, this.password).subscribe({
       next: (response) => {
-        console.log('Login bem-sucedido:', response);
-
-        // Armazena informações localmente se lembrar estiver marcado
-        if (this.rememberMe) {
-          localStorage.setItem('user-email', this.email);
-          localStorage.setItem('user-password', this.password);
-        }
-
         this.isLoading = false;
         this.toastr.success('Login realizado com sucesso!', 'Sucesso');
         this.router.navigate(['/dashboard']); // Redireciona para o dashboard
       },
-      error: (err) => {
-        console.error('Erro no login:', err);
+      error: () => {
         this.isLoading = false;
-        this.toastr.error(
-          'Erro ao fazer login. Verifique suas credenciais.',
-          'Erro'
-        );
+        this.toastr.error('Erro ao fazer login. Verifique suas credenciais.', 'Erro');
       },
     });
   }
