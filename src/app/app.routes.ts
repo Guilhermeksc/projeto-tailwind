@@ -8,6 +8,7 @@ import { ValidateEmailComponent } from './core/auth/validate-email/validate-emai
 import { RegisterComponent } from './core/auth/register/register.component';
 import { PasswordChangeComponent } from './core/auth/password-change/password-change.component';
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
+import { LoginComponent } from './core/auth/login/login.component';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
@@ -19,7 +20,8 @@ import { AnaliseComponent } from './pages/dashboard/content/analise/analise.comp
 import { ApresentacaoComponent } from './pages/dashboard/content/apresentacao/apresentacao.component';
 import { PrazosComponent } from './pages/dashboard/content/prazos/prazos.component';
 import { PlanejamentoComponent } from './pages/dashboard/content/planejamento/planejamento.component';
-import { LoginComponent } from './core/auth/login/login.component';
+
+
 
 export const routes: Routes = [
   {
@@ -28,6 +30,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'sobreProjeto', component: Licitacao360Component },
       { path: 'contatos', component: ContatosComponent },

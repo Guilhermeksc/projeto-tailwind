@@ -2,12 +2,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { LogoutButtonComponent } from '../../../core/auth/logout-button/logout-button.component';
+
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  imports: [ CommonModule],
+  imports: [CommonModule, LogoutButtonComponent],
 })
 export class SidebarComponent {
   collapsedSections: any = {

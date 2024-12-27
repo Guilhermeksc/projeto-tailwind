@@ -3,7 +3,7 @@ sudo apt update
 sudo apt install libreoffice-core libreoffice-common
 
 @Licitacao360.1000
-ssh root@195.200.1.112  
+ssh root@195.200.1.112 
 
 ng cache clean
 ng build --configuration production
@@ -20,12 +20,28 @@ ng build --configuration production --base-href /static/ --deploy-url /static/
 tar -cvf licitacao360.tar -C dist/projeto-tailwind/browser .
 
 cd "C:\Users\guilh\Documents\angular\tailwind\projeto-tailwind"
-
 scp -C licitacao360.tar root@195.200.1.112:/root/
+
+////
+
+@Licitacao360.1000
+
+////
+
+ssh root@195.200.1.112 
+
+
+ls -l /var/www/licitacao360
+rm -r /var/www/licitacao360
+mkdir /var/www/licitacao360
+
 tar -xvf licitacao360.tar -C /var/www/licitacao360
 
 source venv/bin/activate
 
+
+python manage.py makemigrations
+python manage.py migrate
 
 ng serve
 
@@ -58,18 +74,21 @@ sudo nano /etc/nginx/sites-enabled/licitacao360 /etc/nginx/sites-available/defau
 
 python manage.py reset_users  
 systemctl daemon-reload
-systemctl restart django.service
+systemctl restart licitacao360.service
 sudo nginx -t
 sudo systemctl restart nginx
 
-curl -I http://195.200.1.112  
-
-
-ls -l /var/www/licitacao360
-rm -r /var/www/licitacao360
-mkdir /var/www/licitacao360
-
-curl -X POST http://127.0.0.1:8000/api/login/ -H "Content-Type: application/json" -d "{\"username\": \"guilherme\", \"password\": \"bibico1000\"}"
-
+sudo nano /etc/systemd/system/licitacao360.service
 
 curl -X POST http://127.0.0.1:8000/api/register/ -H "Content-Type: application/json" -d "{\"name\": \"guilhermeksc\", \"email\": \"guilhermekscampos@gmail.com\", \"password\": \"bibico200\"}"
+
+
+sudo nano backend/settings/production.py
+
+sudo nano backend/settings/base.py
+
+
+sudo apt update
+sudo apt install redis
+sudo systemctl start redis
+sudo systemctl enable redis

@@ -1,3 +1,5 @@
+// src/app/core/auth/register/register.component.ts
+
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -25,6 +27,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent {
   isLoading: boolean = false; 
+  isSuccess: boolean = false;
+  loadingMessage: string = 'Processando cadastro...';
 
   name: string = '';
   email: string = '';
@@ -56,24 +60,33 @@ export class RegisterComponent {
     }
 
     this.isLoading = true;
+
     this.registerService.register(this.name, this.email, this.password).subscribe({
       next: (response) => {
+        console.log('Resposta do backend:', response);
+        this.isLoading = false;
+        this.isSuccess = true; // Exibe a mensagem de sucesso
         this.toastr.success(
           'Registro realizado com sucesso! Verifique seu e-mail para ativar sua conta.',
           'Sucesso'
         );
-        this.router.navigate(['/login']);
       },
       error: (error) => {
-        this.toastr.error(error.error?.error || 'Erro ao registrar.', 'Erro');
-      },
-      complete: () => {
+        console.error('Erro no registro:', error);
         this.isLoading = false;
+        this.toastr.error(error.error?.error || 'Erro ao registrar.', 'Erro');
       },
     });
   }
-  
+
   navigateToLogin(): void {
+    sessionStorage.clear(); // Limpa qualquer sessão existente
+    console.log('Sessão limpa. Redirecionando para /login...');
     this.router.navigate(['/login']);
+  }
+  
+
+  navigateToInicio(): void {
+    this.router.navigate(['/inicio']);
   }
 }

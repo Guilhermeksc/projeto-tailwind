@@ -48,24 +48,28 @@ export class LoginComponent {
   // Submete o formulário de login
   handleSubmit(): void {
     if (!this.username || !this.password) {
-      this.toastr.error('Todos os campos são obrigatórios.', 'Erro');
-      return;
+        this.toastr.error('Todos os campos são obrigatórios.', 'Erro');
+        return;
     }
-  
+
     this.isLoading = true;
-  
+
     this.loginService.login(this.username, this.password).subscribe({
-      next: (response) => {
-        this.isLoading = false;
-        this.toastr.success('Login realizado com sucesso!', 'Sucesso');
-        this.router.navigate(['/dashboard']); // Redireciona para o dashboard
-      },
-      error: () => {
-        this.isLoading = false;
-        this.toastr.error('Erro ao fazer login. Verifique suas credenciais.', 'Erro');
-      },
+        next: (response) => {
+            this.isLoading = false;
+            if (response.is_active) {
+                this.toastr.success('Login realizado com sucesso!', 'Sucesso');
+                this.router.navigate(['/dashboard']);
+            } else {
+                this.toastr.error('Sua conta ainda não foi ativada. Verifique seu e-mail.', 'Erro');
+            }
+        },
+        error: () => {
+            this.isLoading = false;
+            this.toastr.error('Erro ao fazer login. Verifique suas credenciais.', 'Erro');
+        },
     });
-  }
+}
   navigateToRegister(): void {
     this.router.navigate(['/register']);
   }

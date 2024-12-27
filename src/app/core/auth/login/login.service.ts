@@ -2,45 +2,74 @@
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 
 export interface LoginResponse {
   token: string;
   username: string;
+  is_active: boolean; // Adicionado para validar o e-mail
 }
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoginService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}login/`; // Endpoint de login no backend
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}login/`, { username, password }).pipe(
-      tap((response) => {
-        sessionStorage.setItem('auth-token', response.token);
-        sessionStorage.setItem('username', response.username);
-      })
-    );
+  // Método para obter o CSRF Token
+  private getCsrfToken(): string | null {
+    return document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('csrftoken='))
+      ?.split('=')[1] || null;
   }
+    
+  login(username: string, password: string): Observable<LoginResponse> {
+    // Configura os headers, incluindo o CSRF Token
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-CSRFToken': this.getCsrfToken() || '', // Adiciona o CSRF Token
+    });
 
+    return this.http
+      .post<LoginResponse>(
+        this.apiUrl,
+        { username, password },
+        { headers } // Passa os headers na requisição
+      )
+      .pipe(
+        tap((response) => {
+          sessionStorage.setItem('auth-token', response.token);
+          sessionStorage.setItem('username', response.username);
+          sessionStorage.setItem('is_active', response.is_active.toString());
+      }),
+        catchError((error) => {
+          console.error('Erro no login:', error);
+          return throwError(
+            () => new Error('Falha ao autenticar. Verifique suas credenciais.')
+          );
+        })
+      );
+  }
 
   logout(): void {
-    sessionStorage.removeItem('auth-token');
-    sessionStorage.removeItem('username');
+    sessionStorage.clear(); // Limpa dados do usuário ao deslogar
+    window.location.href = '/inicio'; // Redireciona para a página de início
   }
 
-  isAuthenticated(): Observable<boolean> {
+  isAuthenticated(): boolean {
     const token = sessionStorage.getItem('auth-token');
-    if (!token) {
-      return new Observable<boolean>((observer) => observer.next(false));
-    }
+    return !!token; // Retorna verdadeiro se o token existe
+  }
 
-    return this.http.post<boolean>(`${this.apiUrl}/validate-token/`, { token });
+  isEmailValidated(): boolean {
+    const isActive = sessionStorage.getItem('is_active');
+    return isActive === 'true'; // Verifica o status do e-mail
   }
 
   getAuthToken(): string | null {

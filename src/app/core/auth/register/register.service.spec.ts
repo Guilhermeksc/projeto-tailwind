@@ -1,3 +1,5 @@
+// src/app/core/auth/register/register.service.spec.ts
+
 import { TestBed } from '@angular/core/testing';
 
 import { RegisterService } from '../register/register.service';
