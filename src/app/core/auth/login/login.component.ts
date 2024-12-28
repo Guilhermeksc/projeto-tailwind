@@ -79,6 +79,6 @@ export class LoginComponent {
   }
 
   navigateToChangePassword(): void {
-    this.router.navigate(['/password-change']);
+    this.router.navigate(['/change-password']);
   }
 }

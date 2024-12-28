@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class PasswordChangeService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = `${environment.apiUrl}change-password/`;
 
   constructor(private http: HttpClient) {}
 
@@ -18,11 +18,14 @@ export class PasswordChangeService {
     authToken: string
   ): Observable<any> {
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${authToken}`, // Token de autenticação
+      'Content-Type': 'application/json',
     });
 
+    console.log('Headers enviados:', headers);
+
     return this.http.post(
-      `${this.apiUrl}change-password/`,
+      this.apiUrl,
       { email, currentPassword, newPassword },
       { headers }
     );

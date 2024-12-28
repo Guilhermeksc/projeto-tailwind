@@ -6,6 +6,7 @@ import { AuthFormComponent } from '../shared/auth-form/auth-form.component';
 import { EmailInputComponent } from '../shared/email-input/email-input.component';
 import { PasswordInputComponent } from '../shared/password-input/password-input.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';	
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./password-change.component.scss'],
   imports: [
     CommonModule,
+    FormsModule,
     AuthFormComponent,
     EmailInputComponent,
     PasswordInputComponent,
@@ -50,31 +52,57 @@ export class PasswordChangeComponent {
     this.confirmNewPassword = value;
   }
 
-  handleSubmit(): void {
+  handleSubmit(event?: Event): void {
+    if (event) {
+      event.preventDefault(); // Impede o comportamento padrão do formulário
+    }
+  
+    console.log('handleSubmit chamado'); // Log para verificar a chamada do método
+  
     if (this.newPassword !== this.confirmNewPassword) {
       this.toastr.error('As novas senhas não coincidem.', 'Erro');
       return;
     }
-
+  
+    if (this.newPassword === this.currentPassword) {
+      this.toastr.error('A nova senha não pode ser igual à senha atual.', 'Erro');
+      return;
+    }
+  
+    const authToken = sessionStorage.getItem('auth-token');
+    if (!authToken) {
+      this.toastr.error('Você precisa estar autenticado para alterar a senha.', 'Erro');
+      return;
+    }
+  
+    console.log('Token de autenticação:', authToken);
+    console.log('Enviando dados ao backend:', {
+      email: this.email,
+      currentPassword: this.currentPassword,
+      newPassword: this.newPassword,
+    });
+  
     this.isLoading = true;
-    const authToken = 'your-auth-token'; // Replace with actual token retrieval logic
-    this.passwordChangeService.changePassword(this.email, this.currentPassword, this.newPassword, authToken)
+  
+    this.passwordChangeService
+      .changePassword(this.email, this.currentPassword, this.newPassword, authToken)
       .subscribe({
-        next: () => {
+        next: (response) => {
+          console.log('Resposta do backend:', response);
+          this.isLoading = false;
           this.toastr.success('Senha alterada com sucesso!', 'Sucesso');
           this.router.navigate(['/login']);
         },
         error: (error) => {
-          this.toastr.error(error.error?.error || 'Erro ao alterar a senha.', 'Erro');
-        },
-        complete: () => {
+          console.error('Erro ao alterar a senha:', error);
           this.isLoading = false;
+          this.toastr.error(error.error?.error || 'Erro ao alterar a senha.', 'Erro');
         },
       });
   }
-
-  navigateToRegister(): void {
-    this.router.navigate(['/register']);
+  
+  navigateToForgotPassword(): void {
+    this.router.navigate(['/forgot-password']);
   }
 
   navigateToLogin(): void {

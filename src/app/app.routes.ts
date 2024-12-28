@@ -9,6 +9,8 @@ import { RegisterComponent } from './core/auth/register/register.component';
 import { PasswordChangeComponent } from './core/auth/password-change/password-change.component';
 import { ForgotPasswordComponent } from './core/auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './core/auth/login/login.component';
+import { ResetPasswordComponent } from './core/auth/reset/reset-password/reset-password.component';
+import { InvalidResetComponent } from './core/auth/reset/invalid-reset/invalid-reset.component';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
@@ -35,8 +37,10 @@ export const routes: Routes = [
       { path: 'sobreProjeto', component: Licitacao360Component },
       { path: 'contatos', component: ContatosComponent },
       { path: 'validate-email/:token', component: ValidateEmailComponent },
-      { path: 'password-change', component: PasswordChangeComponent },
-      { path: 'forgot-password/:token', component: ForgotPasswordComponent },
+      { path: 'change-password', component: PasswordChangeComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'reset-password/:token', component: ResetPasswordComponent },
+      { path: 'reset-password/invalid', component: InvalidResetComponent },
     ],
   },
   {
