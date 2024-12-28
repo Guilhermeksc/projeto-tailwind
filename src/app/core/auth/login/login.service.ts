@@ -29,33 +29,33 @@ export class LoginService {
       ?.split('=')[1] || null;
   }
     
-  login(username: string, password: string): Observable<LoginResponse> {
-    // Configura os headers, incluindo o CSRF Token
+  login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CSRFToken': this.getCsrfToken() || '', // Adiciona o CSRF Token
+      'X-CSRFToken': this.getCsrfToken() || '', // Inclua o CSRF Token apenas se necessário
     });
-
+  
     return this.http
-      .post<LoginResponse>(
+      .post<any>(
         this.apiUrl,
         { username, password },
         { headers } // Passa os headers na requisição
       )
       .pipe(
         tap((response) => {
+          // Salva os dados importantes no sessionStorage
           sessionStorage.setItem('auth-token', response.token);
           sessionStorage.setItem('username', response.username);
           sessionStorage.setItem('is_active', response.is_active.toString());
-      }),
+        }),
         catchError((error) => {
+          // Lida com erros no login
           console.error('Erro no login:', error);
-          return throwError(
-            () => new Error('Falha ao autenticar. Verifique suas credenciais.')
-          );
+          return throwError(() => new Error(error.error?.message || 'Falha ao autenticar. Verifique suas credenciais.'));
         })
       );
   }
+  
 
   logout(): void {
     sessionStorage.clear(); // Limpa dados do usuário ao deslogar
