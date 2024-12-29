@@ -1,0 +1,16 @@
+<div class="scrum-column">
+    <h3>{{ title }}</h3>
+    <div
+      cdkDropList
+      [cdkDropListData]="processSteps"
+      class="scrum-list"
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      <app-fase-item
+        *ngFor="let item of processSteps"
+        [item]="item"
+        cdkDrag
+      ></app-fase-item>
+    </div>
+  </div>
+  

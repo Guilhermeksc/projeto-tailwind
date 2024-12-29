@@ -60,7 +60,7 @@ export class LoginComponent {
   
         if (response.is_active) {
           this.toastr.success('Login realizado com sucesso!', 'Sucesso');
-          this.router.navigate(['/dashboard']); // Redireciona para o dashboard
+          this.router.navigate(['/dashboard/prazos']); // Redireciona para o dashboard
         } else {
           this.toastr.error('Sua conta ainda não foi ativada. Verifique seu e-mail.', 'Erro');
         }

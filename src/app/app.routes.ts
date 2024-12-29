@@ -16,7 +16,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CalendarComponent } from './pages/dashboard/content/calendar/calendar.component';
 import { DashComponent } from './pages/dashboard/content/dash/dash.component';
 import { ChatComponent } from './pages/dashboard/content/chat/chat.component';
-import { ScrumViewComponent } from './pages/dashboard/content/scrum-view/scrum-view.component';
+import { ScrumBoardComponent } from './pages/dashboard/content/scrum-board/scrum-board.component';
 import { PgcComponent } from './pages/dashboard/content/pgc/pgc.component';
 import { AnaliseComponent } from './pages/dashboard/content/analise/analise.component';
 import { ApresentacaoComponent } from './pages/dashboard/content/apresentacao/apresentacao.component';
@@ -30,7 +30,8 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent}, 
       { path: 'inicio', component: InicioComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
@@ -52,7 +53,7 @@ export const routes: Routes = [
       { path: 'calendar', component: CalendarComponent },
       { path: 'dash', component: DashComponent },
       { path: 'chat', component: ChatComponent },
-      { path: 'scrum-view', component: ScrumViewComponent },
+      { path: 'scrum-view', component: ScrumBoardComponent },
       { path: 'pgc', component: PgcComponent },
       { path: 'analise', component: AnaliseComponent },
       { path: 'apresentacao', component: ApresentacaoComponent },

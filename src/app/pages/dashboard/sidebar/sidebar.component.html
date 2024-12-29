@@ -6,7 +6,11 @@
     </div>
   
     <div class="uasg-header">
-      <span class="uasg-label">UASG:</span>
+      <div class="uasg-header">
+        <span class="uasg-label">UASG:</span>
+        <span class="uasg-value" *ngIf="uasg">{{ uasg }}</span>
+        <span *ngIf="!uasg">N/A</span>
+      </div>
 
     </div>
   </div>
@@ -75,6 +79,17 @@
           <li><i class="fa fa-sitemap"></i> Organizações</li>
           <li><i class="fa fa-user-shield"></i> Agentes Responsáveis</li>
           <li><i class="fa fa-database"></i> Banco de Dados</li>
+        </ul>
+
+        <li (click)="toggleSection('admin')">
+          <span>ADMIN</span>
+          <span class="toggle-icon">{{ collapsedSections.admin ? '-' : '+' }}</span>
+        </li>
+        <ul *ngIf="collapsedSections.admin" class="sub-menu">
+          <li (click)="navigateToAdmin()">
+            <i class="fa fa-sitemap"></i> Admin
+          </li>
+          
         </ul>
       </ul>
       <app-logout-button></app-logout-button>

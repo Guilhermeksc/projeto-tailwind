@@ -1,0 +1,21 @@
+[
+    {
+      "id": "PE 25/2025",
+      "responsavel": "Fulano",
+      "objeto": "Material de Expediente",
+      "subfase": "Planejamento"
+    },
+    {
+      "id": "PE 24/2025",
+      "responsavel": "Ciclano",
+      "objeto": "Material Elétrico",
+      "subfase": "Planejamento"
+    },
+    {
+      "id": "PE 11/2025",
+      "responsavel": "Beltrano",
+      "objeto": "Gêneros Secos",
+      "subfase": "Nota Técnica"
+    }
+  ]
+  

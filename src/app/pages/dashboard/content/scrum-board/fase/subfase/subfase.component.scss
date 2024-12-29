@@ -1,0 +1,25 @@
+.subfase {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #fff;
+  
+    .processos {
+      margin-top: 10px;
+  
+      .processo {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 8px;
+        margin-bottom: 8px;
+        background: #f4f4f4;
+      }
+  
+      .empty {
+        font-style: italic;
+        color: #888;
+      }
+    }
+  }
+  

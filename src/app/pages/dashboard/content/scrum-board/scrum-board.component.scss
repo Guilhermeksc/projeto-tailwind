@@ -1,0 +1,44 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .fase {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+  }
+  
+  .subfase {
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .collapsible {
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .collapsible:focus {
+    outline: none;
+  }
+  
+  .collapsible + .content {
+    display: none;
+    padding: 10px;
+  }
+  
+  .collapsible.active + .content {
+    display: block;
+  }
+  

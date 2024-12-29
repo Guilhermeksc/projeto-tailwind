@@ -9,7 +9,7 @@ export const environment = {
 
 
 // export const environment = {
-//   production: true, // ou true no ambiente de produção
-//   apiUrl: 'https://www.licitacao360.com/api/', // Certifique-se de que termina com '/'
-//   validateEmailUrl: 'https://www.licitacao360.com/api/validate-email/',
+//   production: true,
+//   apiUrl: 'https://licitacao360.com/api/',
+//   validateEmailUrl: 'https://licitacao360.com/api/validate-email/',
 // };

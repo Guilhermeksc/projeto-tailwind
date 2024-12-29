@@ -1,0 +1,15 @@
+.scrum-item {
+    padding: 8px;
+    margin-bottom: 10px;
+    background: #1976d2;
+    color: white;
+    border-radius: 4px;
+    cursor: grab;
+    font-size: 14px;
+    text-align: center;
+  
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  

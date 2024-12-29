@@ -1,18 +1,36 @@
+.logout-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+}
+
 .logout-button {
-    background-color: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  
-    i {
-      margin-right: 8px;
-    }
-  
-    &:hover {
-      color: #f5a623;
-    }
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre o ícone e o texto */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+    transform: translateY(-2px); /* Eleva o botão */
+  }
+
+  &:active {
+    transform: translateY(0); /* Volta ao clicar */
+  }
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
   }
   

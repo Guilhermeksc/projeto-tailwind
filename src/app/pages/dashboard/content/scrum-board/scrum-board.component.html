@@ -1,0 +1,7 @@
+<div *ngFor="let fase of fases" class="fase">
+    <button class="collapsible">{{ fase.nome }}</button>
+    <div class="content">
+      <app-fase [subfases]="fase.subfases"></app-fase>
+    </div>
+  </div>
+  

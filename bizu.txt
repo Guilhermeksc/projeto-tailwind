@@ -92,3 +92,9 @@ sudo apt update
 sudo apt install redis
 sudo systemctl start redis
 sudo systemctl enable redis
+
+sudo journalctl -u celery.service -f
+
+
+tmux kill-session -t celery-session
+tmux new -s celery-session

@@ -1,0 +1,19 @@
+<div class="subfase">
+    <h3 (click)="toggle()">
+      {{ subfase.nome }}
+      <button>{{ expanded ? 'Colapsar' : 'Expandir' }}</button>
+    </h3>
+    <div *ngIf="expanded" class="processos">
+      <ng-container *ngIf="subfase.processos.length > 0; else noProcessos">
+        <div *ngFor="let processo of subfase.processos" class="processo">
+          <p><strong>Processo ID:</strong> {{ processo.id }}</p>
+          <p><strong>Responsável:</strong> {{ processo.responsavel }}</p>
+          <p><strong>Objeto:</strong> {{ processo.objeto }}</p>
+        </div>
+      </ng-container>
+      <ng-template #noProcessos>
+        <p class="empty">Nenhum processo vinculado</p>
+      </ng-template>
+    </div>
+  </div>
+  

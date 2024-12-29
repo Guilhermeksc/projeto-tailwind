@@ -32,24 +32,28 @@ export class LoginService {
   login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CSRFToken': this.getCsrfToken() || '', // Inclua o CSRF Token apenas se necessário
+      'X-CSRFToken': this.getCsrfToken() || '',
     });
+  
+    console.log('DEBUG: Enviando requisição de login para o backend.'); // Log antes da requisição
+  
   
     return this.http
       .post<any>(
         this.apiUrl,
         { username, password },
-        { headers } // Passa os headers na requisição
+        { headers }
       )
       .pipe(
         tap((response) => {
-          // Salva os dados importantes no sessionStorage
+          console.log('DEBUG: Resposta do backend:', response); // Log da resposta do backend
+
           sessionStorage.setItem('auth-token', response.token);
           sessionStorage.setItem('username', response.username);
           sessionStorage.setItem('is_active', response.is_active.toString());
+          sessionStorage.setItem('uasg', response.uasg || '');
         }),
         catchError((error) => {
-          // Lida com erros no login
           console.error('Erro no login:', error);
           return throwError(() => new Error(error.error?.message || 'Falha ao autenticar. Verifique suas credenciais.'));
         })
@@ -74,5 +78,9 @@ export class LoginService {
 
   getAuthToken(): string | null {
     return sessionStorage.getItem('auth-token');
+  }
+
+  getUasg(): string | null {
+    return sessionStorage.getItem('uasg');
   }
 }
