@@ -1,0 +1,35 @@
+<div>
+  <ul>
+    <li 
+      *ngFor="let comentario of comentarios; let i = index" 
+      class="mb-2 p-3 bg-gray-100 rounded shadow-md hover:bg-gray-200 transition duration-300 ease-in-out">
+      <div class="flex justify-between items-center">
+        <span class="text-gray-800">{{ comentario.comentario }}</span>
+        <div>
+          <button 
+            (click)="editarComentario(comentario.id, i)" 
+            class="bg-yellow-500 text-white px-3 py-1 rounded shadow hover:bg-yellow-400 transition duration-300 ease-in-out mr-2">
+            Editar
+          </button>
+          <button 
+            (click)="excluirComentario(comentario.id, i)" 
+            class="bg-red-500 text-white px-3 py-1 rounded shadow hover:bg-red-400 transition duration-300 ease-in-out">
+            Excluir
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="mt-4">
+    <input 
+      [(ngModel)]="novoComentario" 
+      placeholder="Digite um comentário..." 
+      class="border p-2 rounded w-full shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" />
+    <button 
+      (click)="adicionarComentario()" 
+      class="bg-blue-500 text-white p-2 rounded mt-2 shadow hover:bg-blue-400 transition duration-300 ease-in-out">
+      Adicionar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+.controle-prazos .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .erro {
+    color: red;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .dias-restantes {
+    &.negativo {
+      color: gray; /* Valores negativos */
+    }
+    &.vermelho {
+      color: red; /* Menor que 30 */
+    }
+    &.laranja {
+      color: orange; /* Entre 30 e 60 */
+    }
+    &.amarelo {
+      color: #FFD700; /* Entre 60 e 120 */
+    }
+    &.verde {
+      color: green; /* Entre 120 e 180 */
+    }
+    &.azul {
+      color: blue; /* Acima de 180 */
+    }
+
+  }
+  .nome-fornecedor {
+    word-wrap: break-word; /* Permite quebra de linha no nome do fornecedor */
+    text-align: left; /* Alinha o conteúdo à esquerda */
+  }
+
+  .nup-nowrap {
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde texto que ultrapassa o tamanho da célula */
+    text-overflow: ellipsis; /* Adiciona "..." no final do texto se for muito longo */
+  }
+
+  .valor-global-right {
+    text-align: right; /* Alinha o conteúdo à esquerda */
+  }
+  

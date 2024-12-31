@@ -1,40 +1,54 @@
-<div class="controle-prazos">
-  <h1>Consulta de Contratos - ComprasNet</h1>
-
-  <!-- Formulário para consulta de UASG -->
-  <app-consulta-uasg 
-    (uasgConsultada)="onUasgConsultada()">
-  </app-consulta-uasg>
-
-  <!-- Dropdown para seleção de tabelas -->
-  <app-tabela-contratos
-  [tabelasDisponiveis]="tabelasDisponiveis"
-  (tabelaSelecionada)="onTabelaConfirmada($event)">
-</app-tabela-contratos>
-
-<!-- Tabela de Dados -->
-<div *ngIf="dadosFiltrados.length > 0" style="margin-top: 20px;">
-  <h2>Dados da Tabela Selecionada</h2>
-  <table>
-    <thead>
-      <tr>
-        <th *ngFor="let coluna of colunas">{{ coluna }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let linha of dadosFiltrados" (click)="onRowClick($event)">
-        <td *ngFor="let valor of linha">{{ valor }}</td>
-      </tr>
-    </tbody>
-  </table>
-  
-</div>
-
-
-
-  <!-- Campo de busca e tabela -->
-  <app-filtro-tabela 
-    [dados]="dadosFiltrados" 
-    (filtroAplicado)="onFiltrarDados($event)">
-  </app-filtro-tabela>
+<div class="controle-prazos p-4 bg-background text-text">
+  <div class="header mb-4">
+    <h1 class="text-lg font-bold text-center">Controle de Vigência ComprasnetContratos - UASG {{ uasg }}</h1>
+    <div class="busca flex items-center gap-2">
+      <label for="busca-input" class="text-sm">Localizar:</label>
+      <input
+        id="busca-input"
+        type="text"
+        placeholder="Filtrar contratos"
+        class="w-full p-2 border rounded focus:outline-none focus:border-input-border-focus"
+        (input)="onInputChange($event)"
+      />
+    </div>
+  </div>
+  <div *ngIf="erro" class="text-red-500 mb-4">{{ erro }}</div>
+  <div *ngIf="dadosFiltrados.length > 0; else semDados" class="relative">
+    <!-- Adicionando barra de rolagem horizontal e vertical -->
+    <div class="overflow-auto max-h-[75vh]">
+      <table class="table-auto w-full border-collapse bg-table-bg text-text text-sm">
+        <thead class="sticky top-0 z-10 bg-table-title-bg-color">
+          <tr>
+            <th
+              *ngFor="let coluna of colunas"
+              class="p-2 text-center font-bold text-text-gray"
+            >
+              {{ columnLabels[coluna] || coluna }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let linha of dadosFiltrados"
+            class="hover:bg-table-hover hover:cursor-pointer"
+            (dblclick)="abrirDetalhes(linha)"
+          >
+            <!-- Células de dados -->
+            <td
+            *ngFor="let coluna of colunas"
+            [ngClass]="getCellClass(coluna, linha[coluna])"
+            class="p-2 text-center"
+          >
+            {{ linha[coluna] }}
+          </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #semDados>
+    <p class="text-center text-text-gray">
+      Nenhum contrato encontrado para a UASG {{ uasg }}.
+    </p>
+  </ng-template>
 </div>

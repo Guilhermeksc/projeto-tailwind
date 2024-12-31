@@ -1,5 +1,32 @@
 @import './tailwind.css';
 
+// Definições de cores ajustadas para fundo branco
+$background-color: white; // Cor de fundo principal
+$table-title-bg-color: #E0E4FF; // Cor do título - azul claro
+$table-bg: #F8FAFF; // Fundo da tabela - muito claro
+$table-bg-alt: #EDF2FF; // Fundo alternado para linhas - tom levemente mais escuro
+$table-hover: #D6E0FF; // Fundo ao passar o mouse - azul claro
+$table-color-hover: #000000; // Cor do texto ao passar o mouse - preto para contraste
+$border-color: #CCD4FF; // Cor das bordas - azul suave claro
+$text-color: #000000; // Cor do texto padrão - preto para contraste
+$text-gray: #6C757D; // Texto para mensagens neutras - cinza suave
+$input-border-focus: #5A9FFF; // Cor da borda ao focar um input - azul vibrante
+$input-placeholder-focus: #A3BFFF; // Placeholder mais claro no foco
+
+:root {
+  --background-color: #{$background-color};
+  --table-title-bg-color: #{$table-title-bg-color};
+  --table-bg: #{$table-bg};
+  --table-bg-alt: #{$table-bg-alt};
+  --table-hover: #{$table-hover};
+  --table-color-hover: #{$table-color-hover};
+  --border-color: #{$border-color};
+  --text-color: #{$text-color};
+  --text-gray: #{$text-gray};
+  --input-border-focus: #{$input-border-focus};
+  --input-placeholder-focus: #{$input-placeholder-focus};
+}
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -33,4 +60,65 @@
       transform: rotate(360deg);
     }
   }
+
+  .dashboard-container {
+    display: flex; /* Flexbox para alinhamento horizontal */
+    flex-direction: row;
+    height: 100vh; /* Altura total da tela */
+    background-color: var(--background-color);
+    overflow: hidden; /* Garante que nada ultrapasse os limites */
+}
+
+/* Estilos adicionais para barra de rolagem */
+.overflow-auto {
+  max-height: 75vh; /* Limita a altura máxima da tabela */
+  overflow: auto; /* Ativa as barras de rolagem */
+}
+
+.table-auto {
+  table-layout: auto; /* Permite ajuste automático das colunas */
+  width: 100%; /* Garante que a tabela use todo o espaço disponível */
+}
+
+.table-container {
+  flex: 1; /* Faz o contêiner da tabela ocupar o espaço disponível */
+  overflow: auto; /* Adiciona barras de rolagem quando necessário */
+}
+
+table {
+  width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+  table-layout: auto; /* Permite que as células ajustem seu tamanho conforme o conteúdo */
+  border-collapse: collapse;
+}
+
+td, th {
+  word-wrap: break-word; /* Permite a quebra de linha no conteúdo das células */
+  white-space: normal; /* Garante que o texto se ajuste ao tamanho da célula */
+  padding: 0.5rem; /* Espaçamento interno */
+  text-align: center;
+}
   
+  thead {
+    position: sticky;
+    top: 0; /* Fixa o cabeçalho durante a rolagem */
+    background-color: var(--table-title-bg-color);
+    z-index: 1; /* Garante que o cabeçalho fique acima das linhas */
+  }
+  
+  tr:nth-child(even) {
+    background-color: var(--table-bg-alt);
+  }
+  
+  thead tr:hover {
+    background-color: var(--table-title-bg-color); 
+    cursor: default; /* Remove o cursor de ponteiro */
+  }
+  
+  tr:hover:not(thead tr) {
+    background-color: var(--table-hover); /* Aplica o efeito hover apenas às linhas do corpo */
+    cursor: pointer;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

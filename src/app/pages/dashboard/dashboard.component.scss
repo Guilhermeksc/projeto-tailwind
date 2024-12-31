@@ -1,11 +1,4 @@
-.dashboard-container {
-    display: flex; /* Flexbox para alinhamento horizontal */
-    flex-direction: row; 
-    height: 100vh; /* Altura total da tela */
-    margin: 0;
-    padding: 0;
-  }
-  
+
   .left-container {
     display: flex; /* Flexbox para alinhar mini-sidebar e sidebar juntos */
     align-items: stretch; /* Estica os elementos horizontalmente */
