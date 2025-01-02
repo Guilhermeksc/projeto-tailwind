@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Adicionar Item</h2>
+<div mat-dialog-content>
+  <form>
+    <!-- ID Processo -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>ID Processo</mat-label>
+      <input matInput [(ngModel)]="itemData.id_processo" name="id_processo" required />
+    </mat-form-field>
+
+    <!-- Material/Serviço -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>Material/Serviço</mat-label>
+      <mat-select [(ngModel)]="itemData.material_servico" name="material_servico" required>
+        <mat-option value="Material">Material</mat-option>
+        <mat-option value="Serviço">Serviço</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!itemData.material_servico">Selecione uma opção válida.</mat-error>
+    </mat-form-field>
+
+    <!-- NUP -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>NUP</mat-label>
+      <input
+        matInput
+        [(ngModel)]="itemData.nup"
+        name="nup"
+        required
+        #nupInput="ngModel"
+        (keyup)="onNupChange()"
+        [pattern]="nupPattern"
+      />
+      <mat-error *ngIf="nupInput.invalid && nupInput.touched">Formato: XXXXXX.XXXXXX/XXXX-XX</mat-error>
+    </mat-form-field>
+
+    <!-- Objeto -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>Objeto</mat-label>
+      <input matInput [(ngModel)]="itemData.objeto" name="objeto" required />
+    </mat-form-field>
+
+    <!-- UASG -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>UASG</mat-label>
+      <input
+        matInput
+        [(ngModel)]="itemData.uasg"
+        name="uasg"
+        required
+        #uasgInput="ngModel"
+        pattern="^\d{6}$"
+      />
+      <mat-error *ngIf="uasgInput.invalid && uasgInput.touched">UASG deve ter 6 dígitos.</mat-error>
+    </mat-form-field>
+
+    <!-- Valor Total -->
+    <mat-form-field class="w-full mb-3">
+      <mat-label>Valor Total</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="itemData.valor_total"
+        name="valor_total"
+        required
+        #valorTotalInput="ngModel"
+        min="0.01"
+      />
+      <mat-error *ngIf="valorTotalInput.invalid && valorTotalInput.touched">Insira um valor válido.</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-end">
+  <button mat-button (click)="cancel()" class="btn btn-secondary me-2">
+    Cancelar
+  </button>
+  <button mat-button (click)="save()" class="btn btn-primary" [disabled]="!isFormValid()">Salvar</button>
+</div>

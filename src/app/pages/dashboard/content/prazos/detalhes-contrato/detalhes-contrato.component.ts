@@ -10,7 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon'; // Importar o MatIconModule
 import { ComentariosService } from './comentarios/comentarios.service'; 
 import { HttpClient } from '@angular/common/http';
-
+import { DownloadButtonComponent } from './download-button/download-button.component';
 @Component({
   selector: 'app-detalhes-contrato',
   templateUrl: './detalhes-contrato.component.html',
@@ -22,7 +22,8 @@ import { HttpClient } from '@angular/common/http';
     ComentariosComponent, CommonModule, 
     FormsModule, 
     MatTabsModule,
-    MatIconModule],
+    MatIconModule,
+    DownloadButtonComponent],
 })
 export class DetalhesContratoComponent implements OnInit {
   comentarios: { id: number; comentario: string }[] = [];
@@ -59,32 +60,6 @@ export class DetalhesContratoComponent implements OnInit {
 
   fechar(): void {
     this.dialogRef.close();
-  }
-  baixarArquivo(linkArquivos: string): void {
-    if (!linkArquivos) {
-      console.error('Link de arquivos não fornecido.');
-      return;
-    }
-  
-    // Substituir a URL para usar o proxy
-    const proxyUrl = `http://localhost:8000/proxy/contrato/228363/arquivos`;
-
-    // Faz a requisição ao link_arquivos através do proxy
-    this.http.get<any[]>(proxyUrl).subscribe({
-      next: (response) => {
-        if (response && response.length > 0) {
-          const arquivo = response[0].path_arquivo; // Obtém o primeiro path_arquivo
-          if (arquivo) {
-            this.downloadArquivo(arquivo);
-          } else {
-            console.error('Nenhum arquivo encontrado no path_arquivo.');
-          }
-        } else {
-          console.error('Nenhum dado retornado pelo link_arquivos.');
-        }
-      },
-      error: (err) => console.error('Erro ao obter link de arquivos:', err),
-    });
   }
   
   private downloadArquivo(url: string): void {

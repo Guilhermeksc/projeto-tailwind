@@ -1,17 +1,16 @@
 .tab-container {
-    max-height: 60vh; /* Define um limite máximo de altura */
-    overflow-y: auto; /* Habilita a barra de rolagem vertical */
-    overflow-x: hidden; /* Oculta a barra de rolagem horizontal, se não for necessária */
-  }
-  
-  .detalhes-contrato {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Ocupa todo o espaço do diálogo */
-  }
-  
-  .tab-container {
-    flex-grow: 1; /* Permite que o contêiner se expanda */
-    overflow-y: auto; /* Habilita rolagem vertical */
-  }
-  
+  max-height: 60vh; /* Define um limite máximo de altura */
+  overflow-y: auto; /* Habilita a barra de rolagem vertical */
+  overflow-x: hidden; /* Oculta a barra de rolagem horizontal, se não for necessária */
+}
+
+.detalhes-contrato {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa todo o espaço do diálogo */
+}
+
+.tab-container {
+  flex-grow: 1; /* Permite que o contêiner se expanda */
+  overflow-y: auto; /* Habilita rolagem vertical */
+}

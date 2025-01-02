@@ -26,18 +26,19 @@ export class ApiService {
   getTables(): Observable<any> {
     return this.http.get(`${this.baseUrl}consulta_api/`);
   }
-  adicionarItem(tabela: string, data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}adicionar_item/`, { tabela, data });
+
+  adicionarItem(endpoint: string, data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}${endpoint}/`, data);
   }
-  
+
   excluirItem(tabela: string, id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}excluir_item/${tabela}/${id}/`);
   }
-  
+
   gerarTabela(tabela: string): Observable<any> {
     return this.http.get(`${this.baseUrl}gerar_tabela/?tabela=${tabela}`);
   }
-  
+
   controlarItens(tabela: string): Observable<any> {
     return this.http.get(`${this.baseUrl}controlar_itens/?tabela=${tabela}`);
   }
