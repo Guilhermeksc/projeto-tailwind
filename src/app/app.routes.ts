@@ -22,7 +22,7 @@ import { AnaliseComponent } from './pages/dashboard/content/analise/analise.comp
 import { ApresentacaoComponent } from './pages/dashboard/content/apresentacao/apresentacao.component';
 import { PrazosComponent } from './pages/dashboard/content/prazos/prazos.component';
 import { PlanejamentoComponent } from './pages/dashboard/content/planejamento/planejamento.component';
-
+import { ComprasnetContratosComponent } from './pages/dashboard/content/comprasnet-contratos/comprasnet-contratos.component';
 
 
 export const routes: Routes = [
@@ -59,6 +59,7 @@ export const routes: Routes = [
       { path: 'apresentacao', component: ApresentacaoComponent },
       { path: 'prazos', component: PrazosComponent },
       { path: 'planejamento', component: PlanejamentoComponent },
+      { path: 'comprasnet-contratos', component: ComprasnetContratosComponent },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },

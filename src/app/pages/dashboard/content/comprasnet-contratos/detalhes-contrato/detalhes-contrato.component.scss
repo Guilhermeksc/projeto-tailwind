@@ -1,0 +1,24 @@
+.detalhes-contrato {
+    height: 100%; /* Garante que o diálogo ocupe 100% da altura */
+    overflow: hidden; /* Impede rolagem externa */
+  }
+  
+  .tab-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 3rem); /* Subtrai o espaço do cabeçalho */
+    overflow: hidden; /* Impede rolagem adicional */
+  }
+  
+  .mat-tab-group-height {
+    height: 100%; /* Garante que o grupo de abas ocupe a altura total */
+  }
+  
+  .scrollable-content {
+    height: calc(100% - 3rem); /* Altura dinâmica com espaço para o cabeçalho da aba */
+    max-height: 100%;
+    overflow-y: auto; /* Habilita apenas rolagem vertical */
+    padding: 0.5rem; /* Espaçamento interno */
+    box-sizing: border-box; /* Inclui padding no tamanho total */
+  }
+  

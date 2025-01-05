@@ -1,0 +1,69 @@
+<div class="controle-prazos p-4 bg-background text-text">
+  <!-- Conteúdo principal -->
+  <div *ngIf="!isLoading">
+    <div class="header mb-4">
+      <h1 class="text-lg font-bold text-center">Controle ComprasnetContratos - UASG {{ uasg }}</h1>
+      <div class="busca flex items-center gap-2">
+        <label for="busca-input" class="text-sm">Localizar:</label>
+        <input
+          id="busca-input"
+          type="text"
+          placeholder="Filtrar contratos"
+          class="w-full p-2 border rounded focus:outline-none focus:border-input-border-focus"
+          (input)="onInputChange($event)"
+        />
+        <button
+        class="px-4 py-2 bg-primary text-black rounded hover:bg-primary-dark focus:outline-none flex items-center justify-center gap-2"
+        [disabled]="isLoading"
+        (click)="atualizarDados()"
+      >
+        <div *ngIf="isLoading" class="loading-spinner-button"></div>
+        <span *ngIf="!isLoading">Atualizar</span>
+      </button>
+      
+      
+      </div>
+    </div>
+  <!-- Mensagem de erro -->
+  <div *ngIf="erro" class="text-red-500 mb-4">{{ erro }}</div>
+
+  <div *ngIf="dadosFiltrados.length > 0; else semDados" class="relative">
+    <div class="overflow-auto max-h-[75vh]">
+      <table class="table-auto w-full border-collapse bg-table-bg text-text text-sm">
+        <thead class="sticky top-0 z-10 bg-table-title-bg-color">
+          <tr>
+            <th
+              *ngFor="let coluna of visibleColumns"
+              class="p-2 text-center font-bold text-text-gray"
+            >
+              {{ columnLabels[coluna] || coluna }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let linha of dadosFiltrados"
+            class="hover:bg-table-hover hover:cursor-pointer"
+            (dblclick)="abrirDetalhes(linha)"
+          >
+            <td
+            *ngFor="let coluna of visibleColumns"
+            [ngClass]="getCellClass(coluna, linha[coluna])"
+            class="p-2 text-center"
+          >
+            {{ linha[coluna] }}
+          </td>
+        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Mensagem quando não há dados -->
+  <ng-template #semDados>
+    <p class="text-center text-text-gray">
+      Nenhum contrato encontrado para a UASG {{ uasg }}.
+    </p>
+  </ng-template>
+</div>

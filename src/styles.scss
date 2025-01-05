@@ -119,6 +119,13 @@ td, th {
     cursor: pointer;
   }
   
+  h1 {
+    color: var(--text-color); /* Cor do texto */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    margin: 0; /* Remove margem padrão */
+    padding: 0.5rem; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto horizontalmente */
+  }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

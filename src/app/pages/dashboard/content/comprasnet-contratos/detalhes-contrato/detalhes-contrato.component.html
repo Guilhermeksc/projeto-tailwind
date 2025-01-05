@@ -1,0 +1,60 @@
+<div class="detalhes-contrato rounded-lg p-5 h-full">
+  <!-- Linha com Título e Botão Fechar -->
+  <div class="flex justify-between items-center mb-4">
+    <div>
+      <h1 class="text-xl font-bold">Detalhes do {{ data.tipo }} nº {{ data.numero }} - NUP {{ data.processo }}</h1>
+      <h2 class="text-lg text-gray-900">
+        <span class="font-semibold">Fornecedor:</span> {{ data.fornecedor_nome }}
+      </h2>
+      <h2 class="text-lg text-gray-900">
+        <span class="font-semibold">CNPJ:</span> {{ data.fornecedor_cnpj }}
+      </h2>
+    </div>
+    <div class="flex gap-2">
+      <app-download-button [idContrato]="data.id"></app-download-button>
+      <button 
+        mat-button 
+        (click)="fechar()"
+        class="text-gray-500 hover:text-red-500 transition duration-300 ease-in-out focus:outline-none"
+        title="Fechar">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Adicionado um contêiner para rolagem -->
+  <div class="tab-container h-full">
+    <mat-tab-group class="mat-tab-group-height">
+      <!-- Aba Número -->
+      <mat-tab label="Número">
+          <app-detalhe [data]="data"></app-detalhe>
+      </mat-tab>
+
+      <!-- Aba Informações Complementares -->
+      <mat-tab label="Informações Complementares">
+        <div class="scrollable-content">
+          <app-informacoes-complementares [data]="data"></app-informacoes-complementares>
+        </div>
+      </mat-tab>
+
+      <!-- Aba Empenhos -->
+      <mat-tab label="Empenhos">
+        <div class="scrollable-content">
+          <app-empenhos [data]="data"></app-empenhos>
+        </div>
+      </mat-tab>
+
+      <!-- Aba Comentários -->
+      <mat-tab label="Comentários">
+        <div class="scrollable-content">
+          <app-comentarios
+            [numero]="data.numero"
+            [uasg]="data.uasg"
+            [comentarios]="comentarios"
+            (comentariosChange)="atualizarComentarios($event)">
+          </app-comentarios>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

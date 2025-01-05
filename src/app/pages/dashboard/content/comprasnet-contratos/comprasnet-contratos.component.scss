@@ -1,0 +1,41 @@
+
+  /* Estilo para a mensagem */
+  .loading-message {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .dias-restantes {
+    &.negativo {
+      color: gray; /* Valores negativos */
+    }
+    &.vermelho {
+      color: red; /* Menor que 30 */
+    }
+    &.laranja {
+      color: orange; /* Entre 30 e 60 */
+    }
+    &.amarelo {
+      color: #FFD700; /* Entre 60 e 120 */
+    }
+    &.verde {
+      color: green; /* Entre 120 e 180 */
+    }
+    &.azul {
+      color: blue; /* Acima de 180 */
+    }
+  }
+  
+  .nup-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .valor-global-right {
+    text-align: right;
+    white-space: nowrap;
+  }
+  

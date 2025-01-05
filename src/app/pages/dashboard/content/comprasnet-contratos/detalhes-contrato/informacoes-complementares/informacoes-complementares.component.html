@@ -1,0 +1,22 @@
+<h2 class="text-lg font-semibold mb-3">Informações Complementares</h2>
+<div class="detalhe-item" *ngFor="let key of [
+  'situacao',
+  'prorrogavel',
+  'categoria',
+  'subcategoria',
+  'data_assinatura',
+  'data_publicacao',
+  'vigencia_inicio',
+  'vigencia_fim',
+  'valor_inicial',
+  'valor_global',
+  'fornecedor_nome',
+  'fornecedor_cnpj_cpf_idgener',
+  'codigo_orgao',
+  'orgao_nome',
+  'unidade_gestora_codigo',
+  'sigla_uasg',
+  'unidade_gestora'
+]">
+  <strong>{{ key }}</strong>: {{ data[key] }}
+</div>

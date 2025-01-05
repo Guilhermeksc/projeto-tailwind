@@ -1,0 +1,7 @@
+<button
+  class="px-4 py-2 bg-primary text-black rounded hover:bg-primary-dark focus:outline-none flex items-center justify-center gap-2"
+  [disabled]="isLoading"
+>
+  <div *ngIf="isLoading" class="loading-spinner-button"></div>
+  <span *ngIf="!isLoading">Atualizar</span>
+</button>
