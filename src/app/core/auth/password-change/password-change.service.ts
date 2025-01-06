@@ -7,27 +7,25 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class PasswordChangeService {
-  private apiUrl = `${environment.apiUrl}change-password/`;
+  private apiUrl = `${environment.apiUrl}password-change/`;
 
   constructor(private http: HttpClient) {}
 
-  changePassword(
-    email: string,
-    currentPassword: string,
-    newPassword: string,
-    authToken: string
-  ): Observable<any> {
+  changePassword(oldPassword: string, newPassword: string, confirmPassword: string): Observable<any> {
+    const token = sessionStorage.getItem('auth-token'); // Obtém o token JWT
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${authToken}`, // Token de autenticação
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`, // Adiciona o token ao cabeçalho
     });
-
-    console.log('Headers enviados:', headers);
-
-    return this.http.post(
-      this.apiUrl,
-      { email, currentPassword, newPassword },
-      { headers }
-    );
+  
+    const payload = {
+      old_password: oldPassword,
+      new_password1: newPassword,
+      new_password2: confirmPassword,
+    };
+  
+    console.log('Payload enviado:', payload); // Log para depuração
+  
+    return this.http.post(this.apiUrl, payload, { headers });
   }
 }

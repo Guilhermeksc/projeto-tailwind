@@ -30,7 +30,7 @@ export class RegisterComponent {
   isSuccess: boolean = false;
   loadingMessage: string = 'Processando cadastro...';
 
-  name: string = '';
+  username: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -38,7 +38,7 @@ export class RegisterComponent {
   constructor(private toastr: ToastrService, private router: Router, private registerService: RegisterService) {}
 
   onNameChange(value: string): void {
-    this.name = value;
+    this.username = value;
   }
 
   onEmailChange(value: string): void {
@@ -61,7 +61,7 @@ export class RegisterComponent {
 
     this.isLoading = true;
 
-    this.registerService.register(this.name, this.email, this.password).subscribe({
+    this.registerService.register(this.username, this.email, this.password).subscribe({
       next: (response) => {
         console.log('Resposta do backend:', response);
         this.isLoading = false;

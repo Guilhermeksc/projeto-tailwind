@@ -32,34 +32,57 @@ export class LoginService {
   login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CSRFToken': this.getCsrfToken() || '',
+      'X-CSRFToken': this.getCsrfToken() || '', // Inclui o token CSRF se necessário
     });
   
-    console.log('DEBUG: Enviando requisição de login para o backend.'); // Log antes da requisição
-  
+    console.log('DEBUG: Enviando requisição de login para o backend.');
   
     return this.http
-      .post<any>(
-        this.apiUrl,
-        { username, password },
-        { headers }
-      )
+      .post<any>(this.apiUrl, { username, password }, { headers })
       .pipe(
         tap((response) => {
-          console.log('DEBUG: Resposta do backend:', response); // Log da resposta do backend
-
-          sessionStorage.setItem('auth-token', response.token);
-          sessionStorage.setItem('username', response.username);
-          sessionStorage.setItem('is_active', response.is_active.toString());
-          sessionStorage.setItem('uasg', response.uasg || '');
+          console.log('DEBUG: Resposta do backend:', response);
+  
+          // Verifique se os tokens estão presentes
+          if (response.access && response.refresh) {
+            sessionStorage.setItem('auth-token', response.access);
+            sessionStorage.setItem('refresh-token', response.refresh);
+          } else {
+            throw new Error('Tokens ausentes na resposta do backend.');
+          }
+  
+          // Armazena o username
+          sessionStorage.setItem('username', username);
+  
+          // Armazena o UASG como string
+          if (response.uasg !== undefined && response.uasg !== null) {
+            const uasg = response.uasg.toString(); // Converte para string
+            sessionStorage.setItem('uasg', uasg);
+            console.log('DEBUG: UASG armazenado:', uasg);
+          } else {
+            console.warn('UASG não foi retornado pelo backend.');
+            sessionStorage.setItem('uasg', ''); // Armazena vazio caso ausente
+          }
+  
+          // Armazena o status de ativação
+          if (response.is_active !== undefined) {
+            sessionStorage.setItem('is_active', response.is_active.toString());
+            console.log('DEBUG: Status de ativação armazenado:', response.is_active);
+          } else {
+            console.warn('Status de ativação (is_active) não foi retornado pelo backend.');
+          }
         }),
         catchError((error) => {
           console.error('Erro no login:', error);
-          return throwError(() => new Error(error.error?.message || 'Falha ao autenticar. Verifique suas credenciais.'));
+  
+          // Captura mensagens de erro do backend, se disponíveis
+          const errorMessage =
+            error.error?.message || 'Falha ao autenticar. Verifique suas credenciais.';
+          return throwError(() => new Error(errorMessage));
         })
       );
   }
-  
+   
 
   logout(): void {
     sessionStorage.clear(); // Limpa dados do usuário ao deslogar
@@ -81,6 +104,8 @@ export class LoginService {
   }
 
   getUasg(): string | null {
-    return sessionStorage.getItem('uasg');
+    const uasg = sessionStorage.getItem('uasg');
+    console.log('DEBUG: UASG retornado pelo LoginService:', uasg);
+    return uasg;
   }
 }

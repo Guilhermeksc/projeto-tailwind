@@ -17,20 +17,20 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   canActivate(): boolean {
     const isAuthenticated = this.loginService.getAuthToken(); // Verifica o token de autenticação
-
+  
     if (!isAuthenticated) {
       this.toastr.error('Você precisa estar autenticado para acessar essa área.', 'Erro');
       this.router.navigate(['/login']);
       return false;
     }
-
+  
     const isActive = this.loginService.isEmailValidated();
     if (!isActive) {
-        this.toastr.error('Por favor, valide seu e-mail antes de acessar essa área.', 'Erro');
-        this.router.navigate(['/inicio']);
-        return false;
+      this.toastr.error('Por favor, valide seu e-mail antes de acessar essa área.', 'Erro');
+      this.router.navigate(['/inicio']);
+      return false;
     }
-
+  
     return true;
   }
 

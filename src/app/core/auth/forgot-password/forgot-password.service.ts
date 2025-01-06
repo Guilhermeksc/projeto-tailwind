@@ -9,17 +9,12 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class ForgotPasswordService {
-  private apiUrl = `${environment.apiUrl}forgot-password/`;
+  private apiUrl = `${environment.apiUrl}password-reset/`;
 
   constructor(private http: HttpClient) {}
 
-  requestPasswordReset(email: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json', // Define o tipo de conteúdo
-    });
-  
-    console.log('E-mail enviado ao backend:', email);  // Verifique o que está sendo enviado
-  
-    return this.http.post(this.apiUrl, { email }, { headers });
+  sendRecoveryEmail(username: string, email: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.apiUrl, { username, email }, { headers });
   }
 }

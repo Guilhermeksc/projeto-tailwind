@@ -40,7 +40,7 @@ export const routes: Routes = [
       { path: 'validate-email/:token', component: ValidateEmailComponent },
       { path: 'change-password', component: PasswordChangeComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'reset-password/:token', component: ResetPasswordComponent },
+      { path: 'reset-password/:uid/:token', component: ResetPasswordComponent },
       { path: 'reset-password/invalid', component: InvalidResetComponent },
     ],
   },

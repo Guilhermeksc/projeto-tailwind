@@ -39,7 +39,11 @@ export class SidebarComponent {
   }
 
   navigateToAdmin(): void {
-    window.open('http://localhost:8000/admin', '_blank'); // Substitua pelo endereço do admin do Django
+    const adminUrl = environment.production
+      ? 'https://licitacao360.com/admin' // URL de produção
+      : 'http://localhost:8000/admin'; // URL de desenvolvimento
+    window.open(adminUrl, '_blank');
   }
+  
 }
 
