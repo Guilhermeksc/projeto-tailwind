@@ -98,3 +98,9 @@ sudo journalctl -u celery.service -f
 
 tmux kill-session -t celery-session
 tmux new -s celery-session
+
+#producao
+celery -A backend worker --loglevel=info --pool=solo
+
+tmux attach-session -t celery-session
+
