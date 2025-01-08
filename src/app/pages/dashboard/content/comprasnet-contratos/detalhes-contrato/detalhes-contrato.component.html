@@ -27,7 +27,9 @@
     <mat-tab-group class="mat-tab-group-height">
       <!-- Aba Número -->
       <mat-tab label="Número">
+        <div class="scrollable-content">
           <app-detalhe [data]="data"></app-detalhe>
+        </div>
       </mat-tab>
 
       <!-- Aba Informações Complementares -->
@@ -49,7 +51,7 @@
         <div class="scrollable-content">
           <app-comentarios
             [numero]="data.numero"
-            [uasg]="data.uasg"
+            [unidade_compra]="data.unidade_compra"
             [comentarios]="comentarios"
             (comentariosChange)="atualizarComentarios($event)">
           </app-comentarios>

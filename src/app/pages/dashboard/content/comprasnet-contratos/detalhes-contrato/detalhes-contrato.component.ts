@@ -34,10 +34,10 @@ export class DetalhesContratoComponent implements OnInit {
     private comentariosService: ComentariosService, // Injeção do serviço de comentários
     private http: HttpClient
   ) {
-    // Certifique-se de que `uasg` está disponível no objeto `data`
+    // Certifique-se de que `unidade_compra` está disponível no objeto `data`
     this.data = {
       ...this.data,
-      uasg: this.data.unidade_gestora_codigo || this.data.uasg, // Ajuste para obter `uasg` corretamente
+      unidade_compra: this.data.unidade_gestora_codigo || this.data.unidade_compra, // Ajuste para obter `unidade_compra` corretamente
     };
   }
 
@@ -46,7 +46,7 @@ export class DetalhesContratoComponent implements OnInit {
   }
 
   carregarComentarios(): void {
-    this.comentariosService.getComentarios(this.data.numero, this.data.uasg).subscribe({
+    this.comentariosService.getComentarios(this.data.numero, this.data.unidade_compra).subscribe({
       next: (comentarios) => {
         this.comentarios = comentarios;
       },

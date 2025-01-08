@@ -20,7 +20,7 @@ export class PlanejamentoComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<any>; 
 
   private apiUrl = environment.apiUrl;
-  uasg: string | null = null;
+  unidade_compra: string | null = null;
   processos: any[] = [];
   displayedColumns: string[] = [
     'id_processo',
@@ -29,7 +29,7 @@ export class PlanejamentoComponent implements OnInit {
     'material_servico',
     'nup',
     'objeto',
-    'uasg',
+    'unidade_compra',
     'valor_total'
   ];
 
@@ -40,8 +40,8 @@ export class PlanejamentoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.uasg = this.loginService.getUasg(); // Obtém a UASG do sessionStorage
-    console.log('DEBUG: UASG carregado no PlanejamentoComponent:', this.uasg);
+    this.unidade_compra = this.loginService.getunidade_compra(); // Obtém a unidade_compra do sessionStorage
+    console.log('DEBUG: unidade_compra carregado no PlanejamentoComponent:', this.unidade_compra);
     this.loadProcessos();
   }
 

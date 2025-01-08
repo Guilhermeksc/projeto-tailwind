@@ -17,7 +17,7 @@ export class ComprasnetContratosComponent implements OnInit {
     @ViewChild(MatTable) table!: MatTable<any>; 
   
   mensagemLoading: string = '';
-  uasg: string = '';
+  unidade_compra: string = '';
   dadosOriginais: any[] = []; // Armazena todos os dados originais da API
   dadosFiltrados: any[] = []; // Dados exibidos na tabela (filtrados ou completos)
   colunas: string[] = [];
@@ -52,18 +52,18 @@ export class ComprasnetContratosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.uasg = this.loginService.getUasg() || ''; // Obter a UASG do serviço de login
+    this.unidade_compra = this.loginService.getunidade_compra() || ''; // Obter a unidade_compra do serviço de login
     this.carregarContratos();
   }
 
   loadProcessos(): void {
-    if (!this.uasg) {
-      this.erro = 'UASG não encontrada.';
+    if (!this.unidade_compra) {
+      this.erro = 'unidade_compra não encontrada.';
       return;
     }
   
     this.isLoading = true;
-    this.ComprasnetContratosService.getContratosByUasg(this.uasg).subscribe({
+    this.ComprasnetContratosService.getContratosByunidade_compra(this.unidade_compra).subscribe({
       next: (response) => {
         this.isLoading = false;
         if (Array.isArray(response) && response.length > 0) {
@@ -83,8 +83,8 @@ export class ComprasnetContratosComponent implements OnInit {
   }
 
   atualizarDados(): void {
-    if (!this.uasg) {
-      this.erro = 'UASG não encontrada.';
+    if (!this.unidade_compra) {
+      this.erro = 'unidade_compra não encontrada.';
       return;
     }
   
@@ -108,15 +108,15 @@ export class ComprasnetContratosComponent implements OnInit {
 
   
   carregarContratos(): void {
-    if (!this.uasg) {
-      this.erro = 'UASG não encontrada.';
+    if (!this.unidade_compra) {
+      this.erro = 'unidade_compra não encontrada.';
       return;
     }
   
     this.isLoading = true;
     this.mensagemLoading = 'Carregando contratos...';
   
-    this.ComprasnetContratosService.getContratosByUasg(this.uasg).subscribe({
+    this.ComprasnetContratosService.getContratosByunidade_compra(this.unidade_compra).subscribe({
       next: (data) => {
         this.mensagemLoading = 'Contratos carregados com sucesso.';
         this.processarDados(data); // Processa os dados

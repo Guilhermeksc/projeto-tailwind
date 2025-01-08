@@ -27,8 +27,8 @@ export class ComprasnetContratosService {
     return this.http.post<any>(this.baseUrl, processo, { headers });
   }
 
-  getContratosByUasg(uasg: string): Observable<any[]> {
-    const url = `${this.baseUrl}?uasg=${uasg}`;
+  getContratosByunidade_compra(unidade_compra: string): Observable<any[]> {
+    const url = `${this.baseUrl}?unidade_compra=${unidade_compra}`;
     const token = sessionStorage.getItem('auth-token');
   
     if (!token) {

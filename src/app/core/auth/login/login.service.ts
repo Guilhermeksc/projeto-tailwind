@@ -54,14 +54,14 @@ export class LoginService {
           // Armazena o username
           sessionStorage.setItem('username', username);
   
-          // Armazena o UASG como string
-          if (response.uasg !== undefined && response.uasg !== null) {
-            const uasg = response.uasg.toString(); // Converte para string
-            sessionStorage.setItem('uasg', uasg);
-            console.log('DEBUG: UASG armazenado:', uasg);
+          // Armazena o unidade_compra como string
+          if (response.unidade_compra !== undefined && response.unidade_compra !== null) {
+            const unidade_compra = response.unidade_compra.toString(); // Converte para string
+            sessionStorage.setItem('unidade_compra', unidade_compra);
+            console.log('DEBUG: unidade_compra armazenado:', unidade_compra);
           } else {
-            console.warn('UASG não foi retornado pelo backend.');
-            sessionStorage.setItem('uasg', ''); // Armazena vazio caso ausente
+            console.warn('unidade_compra não foi retornado pelo backend.');
+            sessionStorage.setItem('unidade_compra', ''); // Armazena vazio caso ausente
           }
   
           // Armazena o status de ativação
@@ -103,9 +103,9 @@ export class LoginService {
     return sessionStorage.getItem('auth-token');
   }
 
-  getUasg(): string | null {
-    const uasg = sessionStorage.getItem('uasg');
-    console.log('DEBUG: UASG retornado pelo LoginService:', uasg);
-    return uasg;
+  getunidade_compra(): string | null {
+    const unidade_compra = sessionStorage.getItem('unidade_compra');
+    console.log('DEBUG: unidade_compra retornado pelo LoginService:', unidade_compra);
+    return unidade_compra;
   }
 }

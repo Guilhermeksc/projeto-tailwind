@@ -24,8 +24,8 @@ export class ComentariosService {
     });
   }
 
-  getComentarios(numero: string, uasg: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}?numero=${numero}&uasg=${uasg}`, {
+  getComentarios(numero: string, unidade_compra: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}?numero=${numero}&unidade_compra=${unidade_compra}`, {
       headers: this.getHeaders(),
     });
   }

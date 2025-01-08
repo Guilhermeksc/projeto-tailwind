@@ -13,7 +13,7 @@ import { DetalhesContratoComponent } from './detalhes-contrato/detalhes-contrato
   imports: [CommonModule, FormsModule],
 })
 export class PrazosComponent implements OnInit {
-  uasg: string = '';
+  unidade_compra: string = '';
   dadosOriginais: any[] = []; // Armazena todos os dados originais da API
   dadosFiltrados: any[] = []; // Dados exibidos na tabela (filtrados ou completos)
   colunas: string[] = [];
@@ -38,18 +38,18 @@ export class PrazosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.uasg = this.loginService.getUasg() || ''; // Obter a UASG do serviço de login
+    this.unidade_compra = this.loginService.getunidade_compra() || ''; // Obter a unidade_compra do serviço de login
     this.carregarContratos();
   }
 
   carregarContratos(): void {
-    if (!this.uasg) {
-      this.erro = 'UASG não encontrada.';
+    if (!this.unidade_compra) {
+      this.erro = 'unidade_compra não encontrada.';
       return;
     }
   
     this.isLoading = true; // Indicador de carregamento
-    this.apiContratoService.getContratosByUasg(this.uasg).subscribe({
+    this.apiContratoService.getContratosByunidade_compra(this.unidade_compra).subscribe({
       next: (response) => {
         this.isLoading = false; // Finaliza o indicador de carregamento
         console.log('Resposta da API:', response); // Log completo da resposta

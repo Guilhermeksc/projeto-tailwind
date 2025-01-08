@@ -5,21 +5,21 @@
   background-color: NAVY;
 }
 
-.uasg-header {
+.unidade_compra-header {
   display: flex;  
   flex-direction: column; /* Organiza os elementos em uma coluna */
   align-items: center; /* Centraliza horizontalmente */
   text-align: center; /* Centraliza o texto */
 }
 
-.uasg-label {
+.unidade_compra-label {
   display: block; /* Garante que o texto ocupe uma linha separada */
-  font-size: 8px; /* Tamanho menor para "UASG:" */
+  font-size: 8px; /* Tamanho menor para "unidade_compra:" */
   color: #ffffff; /* Cor branca para o texto */
-  margin-bottom: 15px; /* Espaço entre "UASG:" e o valor */
+  margin-bottom: 15px; /* Espaço entre "unidade_compra:" e o valor */
 }
 
-.uasg-value {
+.unidade_compra-value {
   font-size: 12px; /* Tamanho maior para o valor */
   color: #ffffff; /* Cor branca para o texto */
 }

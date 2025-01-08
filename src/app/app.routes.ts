@@ -27,6 +27,10 @@ import { ComprasnetContratosComponent } from './pages/dashboard/content/comprasn
 
 export const routes: Routes = [
   {
+    path: 'admin',
+    redirectTo: '', // Redireciona para a página inicial ou outra rota padrão
+  },  
+  {
     path: '',
     component: HomeComponent,
     children: [

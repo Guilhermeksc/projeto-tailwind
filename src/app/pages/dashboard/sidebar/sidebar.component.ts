@@ -20,13 +20,13 @@ export class SidebarComponent {
   };
 
   activeSection: string = '';
-  uasg: string | null = null; // Propriedade para armazenar o UASG
+  unidade_compra: string | null = null; // Propriedade para armazenar o unidade_compra
 
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
-    this.uasg = this.loginService.getUasg();
-    console.log('DEBUG: UASG carregado no Sidebar:', this.uasg);
+    this.unidade_compra = this.loginService.getunidade_compra();
+    console.log('DEBUG: unidade_compra carregado no Sidebar:', this.unidade_compra);
   }
 
   toggleSection(section: string) {

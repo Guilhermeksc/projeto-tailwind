@@ -20,7 +20,7 @@ export class AddItemModalComponent {
     material_servico: '',
     nup: '',
     objeto: '',
-    uasg: '',
+    unidade_compra: '',
     valor_total: null,
     etapa: 'Planejamento', // Valor fixo
     situacao: 'Planejamento', // Valor fixo
@@ -33,7 +33,7 @@ export class AddItemModalComponent {
   errorMessages: any = {
     material_servico: '',
     nup: '',
-    uasg: '',
+    unidade_compra: '',
     valor_total: '',
   };
 
@@ -48,7 +48,7 @@ export class AddItemModalComponent {
       this.itemData.id_processo &&
       this.itemData.material_servico &&
       new RegExp(this.nupPattern).test(this.formatNup(this.itemData.nup)) &&
-      /^\d{6}$/.test(this.itemData.uasg) &&
+      /^\d{6}$/.test(this.itemData.unidade_compra) &&
       this.itemData.valor_total > 0
     );
   }
@@ -60,8 +60,8 @@ export class AddItemModalComponent {
     return nupPattern.test(this.formatNup(this.itemData.nup));
   }
   
-  isValidUasg(): boolean {
-    return /^\d{6}$/.test(this.itemData.uasg);
+  isValidunidade_compra(): boolean {
+    return /^\d{6}$/.test(this.itemData.unidade_compra);
   }
   
   isValidValorTotal(): boolean {
@@ -69,7 +69,7 @@ export class AddItemModalComponent {
   }
   
   validateFields(): boolean {
-    return this.isValidNup() && this.isValidUasg() && this.isValidValorTotal();
+    return this.isValidNup() && this.isValidunidade_compra() && this.isValidValorTotal();
   }
   
   onNupChange(): void {

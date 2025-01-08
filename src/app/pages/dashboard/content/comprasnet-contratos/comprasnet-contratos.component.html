@@ -2,7 +2,7 @@
   <!-- Conteúdo principal -->
   <div *ngIf="!isLoading">
     <div class="header mb-4">
-      <h1 class="text-lg font-bold text-center">Controle ComprasnetContratos - UASG {{ uasg }}</h1>
+      <h1 class="text-lg font-bold text-center">Controle ComprasnetContratos - UASG {{ unidade_compra }}</h1>
       <div class="busca flex items-center gap-2">
         <label for="busca-input" class="text-sm">Localizar:</label>
         <input
@@ -13,7 +13,7 @@
           (input)="onInputChange($event)"
         />
         <button
-        class="px-4 py-2 bg-primary text-black rounded hover:bg-primary-dark focus:outline-none flex items-center justify-center gap-2"
+        class="custom-button"
         [disabled]="isLoading"
         (click)="atualizarDados()"
       >
@@ -63,7 +63,7 @@
   <!-- Mensagem quando não há dados -->
   <ng-template #semDados>
     <p class="text-center text-text-gray">
-      Nenhum contrato encontrado para a UASG {{ uasg }}.
+      Nenhum contrato encontrado para a unidade_compra {{ unidade_compra }}.
     </p>
   </ng-template>
 </div>

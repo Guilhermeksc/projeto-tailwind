@@ -11,7 +11,7 @@ import { ComentariosService } from './comentarios.service';
 })
 export class ComentariosComponent implements OnInit {
   @Input() numero!: string;
-  @Input() uasg!: string;
+  @Input() unidade_compra!: string;
   @Input() comentarios: { id: number; comentario: string }[] = [];
   @Output() comentariosChange = new EventEmitter<{ id: number; comentario: string }[]>();
   novoComentario: string = '';
@@ -23,8 +23,8 @@ export class ComentariosComponent implements OnInit {
   }
 
   carregarComentarios(): void {
-    if (this.numero && this.uasg) {
-      this.comentariosService.getComentarios(this.numero, this.uasg).subscribe({
+    if (this.numero && this.unidade_compra) {
+      this.comentariosService.getComentarios(this.numero, this.unidade_compra).subscribe({
         next: (comentarios) => {
           this.comentarios = comentarios;
           this.comentariosChange.emit(this.comentarios);
@@ -38,7 +38,7 @@ export class ComentariosComponent implements OnInit {
     if (this.novoComentario.trim()) {
       const novoComentarioObj = {
         numero: this.numero, // Verifique se está correto
-        uasg: this.uasg,     // Verifique se está correto
+        unidade_compra: this.unidade_compra,     // Verifique se está correto
         comentario: this.novoComentario.trim(),
       };
   

@@ -38,18 +38,18 @@
       <input matInput [(ngModel)]="itemData.objeto" name="objeto" required />
     </mat-form-field>
 
-    <!-- UASG -->
+    <!-- unidade_compra -->
     <mat-form-field class="w-full mb-3">
-      <mat-label>UASG</mat-label>
+      <mat-label>unidade_compra</mat-label>
       <input
         matInput
-        [(ngModel)]="itemData.uasg"
-        name="uasg"
+        [(ngModel)]="itemData.unidade_compra"
+        name="unidade_compra"
         required
-        #uasgInput="ngModel"
+        #unidade_compraInput="ngModel"
         pattern="^\d{6}$"
       />
-      <mat-error *ngIf="uasgInput.invalid && uasgInput.touched">UASG deve ter 6 dígitos.</mat-error>
+      <mat-error *ngIf="unidade_compraInput.invalid && unidade_compraInput.touched">unidade_compra deve ter 6 dígitos.</mat-error>
     </mat-form-field>
 
     <!-- Valor Total -->

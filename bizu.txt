@@ -72,6 +72,9 @@ sudo ln -s /etc/nginx/sites-available/multiple_sites /etc/nginx/sites-enabled/mu
 
 sudo nano /etc/nginx/sites-enabled/licitacao360 /etc/nginx/sites-available/default
 
+python manage.py makemigrations   
+python manage.py migrate   
+
 python manage.py reset_users  
 systemctl daemon-reload
 systemctl restart licitacao360.service

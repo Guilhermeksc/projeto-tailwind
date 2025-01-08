@@ -11,8 +11,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  consultarUASG(uasg: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}consulta_api/`, { uasg });
+  consultarunidade_compra(unidade_compra: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}consulta_api/`, { unidade_compra });
   }
 
   visualizarTabela(tabela: string): Observable<any> {

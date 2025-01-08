@@ -11,8 +11,8 @@ export class ApiContratoService {
 
   constructor(private http: HttpClient) {}
 
-  getContratosByUasg(uasg: string): Observable<any> {
-    const url = `${this.baseUrl}?uasg=${uasg}`; // Certifique-se de que a query string está correta
+  getContratosByunidade_compra(unidade_compra: string): Observable<any> {
+    const url = `${this.baseUrl}?unidade_compra=${unidade_compra}`; // Certifique-se de que a query string está correta
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
