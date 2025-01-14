@@ -1,13 +1,6 @@
 <div *ngIf="!isSuccess; else successTemplate">
   <auth-form title="Registrar-se">
     <form (ngSubmit)="handleSubmit()">
-      <!-- Campo Nome -->
-      <name-input
-        [(name)]="username"
-        [required]="true"
-        (nameChange)="onNameChange($event)"
-      ></name-input>
-
       <!-- Campo E-mail -->
       <email-input
         [(email)]="email"

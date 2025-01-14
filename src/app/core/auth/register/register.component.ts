@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthFormComponent } from '../shared/auth-form/auth-form.component';
-import { NameInputComponent } from '../shared/name-input/name-input.component';
 import { EmailInputComponent } from '../shared/email-input/email-input.component';
 import { PasswordInputComponent } from '../shared/password-input/password-input.component';
 import { RegisterService } from './register.service';
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AuthFormComponent,
-    NameInputComponent,
     EmailInputComponent,
     PasswordInputComponent,
     FormsModule,
@@ -30,16 +28,11 @@ export class RegisterComponent {
   isSuccess: boolean = false;
   loadingMessage: string = 'Processando cadastro...';
 
-  username: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
 
   constructor(private toastr: ToastrService, private router: Router, private registerService: RegisterService) {}
-
-  onNameChange(value: string): void {
-    this.username = value;
-  }
 
   onEmailChange(value: string): void {
     this.email = value;
@@ -61,7 +54,7 @@ export class RegisterComponent {
 
     this.isLoading = true;
 
-    this.registerService.register(this.username, this.email, this.password).subscribe({
+    this.registerService.register(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Resposta do backend:', response);
         this.isLoading = false;

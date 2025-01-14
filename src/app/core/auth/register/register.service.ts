@@ -15,8 +15,8 @@ export class RegisterService {
   constructor(private http: HttpClient) {}
 
   // Registra o usuário
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}register/`, { username, email, password });
+  register(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}register/`, { email, password });
   }
 
   // Valida o e-mail com o token recebido

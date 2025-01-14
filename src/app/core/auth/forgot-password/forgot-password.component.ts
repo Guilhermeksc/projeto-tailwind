@@ -106,7 +106,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthFormComponent } from '../shared/auth-form/auth-form.component';
 import { EmailInputComponent } from '../shared/email-input/email-input.component';
-import { NameInputComponent } from '../shared/name-input/name-input.component';
 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -116,7 +115,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
-  imports: [AuthFormComponent, NameInputComponent, EmailInputComponent, FormsModule, CommonModule],
+  imports: [AuthFormComponent, EmailInputComponent, FormsModule, CommonModule],
 })
 export class ForgotPasswordComponent {
   username: string = ''; // Novo campo para o username

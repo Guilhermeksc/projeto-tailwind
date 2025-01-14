@@ -31,6 +31,13 @@
     text-transform: uppercase;
     letter-spacing: 2px;
   }
+
+  h3 {
+    color: rgba(255, 255, 255, 0.8); /* Cor suave */
+    font-size: 1rem; /* Ajuste o tamanho da fonte, se necessário */
+    margin-bottom: 1px; /* Espaçamento inferior */
+    text-align: center; /* Centraliza o texto */
+  }  
 }
 @media (max-width: 768px) {
   .auth-form-container {
@@ -65,4 +72,16 @@
   .auth-form-container {
     padding-bottom: 60px; /* Aumenta ainda mais o espaçamento inferior */
   }
+}
+
+.developer-info {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* Espaço entre o ícone e o texto */
+  margin-left: 10px;
+}
+
+.developer-info .icon {
+  width: 40px;
+  height: 40px;
 }

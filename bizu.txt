@@ -18,6 +18,11 @@ ng build
 ng build --configuration production --base-href /static/ --deploy-url /static/
 
 tar -cvf licitacao360.tar -C dist/projeto-tailwind/browser .
+cd C:\Users\guilh\Documents\angular\luchettigabriel\luchetti-site
+
+scp -C luchetti.tar root@195.200.1.112:/var/www/luchettigabriel
+cd /var/www/luchettigabriel
+
 
 cd "C:\Users\guilh\Documents\angular\tailwind\projeto-tailwind"
 scp -C licitacao360.tar root@195.200.1.112:/root/
@@ -54,8 +59,9 @@ C:\Users\guilh\Documents\angular\aya\ayabioarquitetura\bizu.txt
 cd Users\guilh\Documents\angular\aya\ayabioarquitetura
 scp -C projetoaya.tar root@195.200.1.112:/home/guilherme/
 
+scp -C luchetti.tar root@195.200.1.112:/var/www/luchettigabriel
 
-
+sudo tar -xvf luchetti.tar -C ??
 
 sudo tar -xvf projetoaya.tar -C ../aya
 

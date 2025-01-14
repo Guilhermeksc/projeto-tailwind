@@ -13,25 +13,21 @@
   }  
 /* Campo de Senha */
 .password-field {
-    position: relative;
-    display: flex;
-    align-items: center; /* Alinha os filhos na mesma linha */
-    width: 100%;
-  }
+  position: relative; /* Define o contêiner como referência para o botão */
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
   
-  .password-field input {
-    width: 100%;
-    padding: 10px;
-    padding-right: 40px; /* Espaço para o botão de alternar senha */
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 8px;
-    font-size: 1rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    outline: none;
-    transition: all 0.3s ease;
-  }
-    
+.password-field input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
   /* Label do Campo de Senha */
   .auth-input-field label {
     display: block;
@@ -47,12 +43,9 @@
   .auth-input-field input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px; /* Espaço para ícones ou botões */
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 8px;
     font-size: 1rem;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
     outline: none;
     transition: all 0.3s ease;
   }
